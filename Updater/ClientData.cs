@@ -34,36 +34,38 @@ namespace Updater
        
 
 
-        [Obfuscation(Feature = "virtualization", Exclude = false)]
+        //[Obfuscation(Feature = "virtualization", Exclude = false)]
         private byte[] XorEncode(byte[] buf)
         {
-            byte[] _out = new byte[buf.Length + 2];
-            _out[0] = (byte)random.Next(1, 225);
-            _out[1] = (byte)random.Next(4, 100);
-            for (int i = 0; i < buf.Length; i++)
-            {
-                _out[i + 2] = (byte)(_out[i + 2] ^ _out[1]);
-                _out[i + 2] = (byte)(_out[i + 2] ^ 24);
-                _out[i + 2] = (byte)(buf[i] ^ _out[0]);
-            }
-            _out[0] = (byte)(_out[0] ^ _out[1]);
-            return _out;
+            //byte[] _out = new byte[buf.Length + 2];
+            //_out[0] = (byte)random.Next(1, 225);
+            //_out[1] = (byte)random.Next(4, 100);
+            //for (int i = 0; i < buf.Length; i++)
+            //{
+            //    _out[i + 2] = (byte)(_out[i + 2] ^ _out[1]);
+            //    _out[i + 2] = (byte)(_out[i + 2] ^ 24);
+            //    _out[i + 2] = (byte)(buf[i] ^ _out[0]);
+            //}
+            //_out[0] = (byte)(_out[0] ^ _out[1]);
+            //return _out;
+            throw new NotImplementedException();
         }
 
 
-        [Obfuscation(Feature = "virtualization", Exclude = false)]
+        //[Obfuscation(Feature = "virtualization", Exclude = false)]
         private byte[] XorDecode(byte[] buf)
         {
-            byte[] _out = new byte[buf.Length - 2];
-            int a = 0;
-            for (int i = 2; i < buf.Length; i++)
-            {
-                _out[a] = (byte)(_out[a] ^ buf[1]);
-                _out[a] = (byte)(_out[a] ^ 24);
-                _out[a] = (byte)(buf[i] ^ (byte)(buf[0] ^ buf[1]));
-                a++;
-            }
-            return _out;
+            //byte[] _out = new byte[buf.Length - 2];
+            //int a = 0;
+            //for (int i = 2; i < buf.Length; i++)
+            //{
+            //    _out[a] = (byte)(_out[a] ^ buf[1]);
+            //    _out[a] = (byte)(_out[a] ^ 24);
+            //    _out[a] = (byte)(buf[i] ^ (byte)(buf[0] ^ buf[1]));
+            //    a++;
+            //}
+            //return _out;
+            throw new NotImplementedException();
         }
 
         public ClientData(string ipp, int portt)

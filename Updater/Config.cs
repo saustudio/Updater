@@ -13,7 +13,8 @@ namespace Updater
 
 
         public static string[] weburl = new string[2] { "http://94.130.219.211/file_kr", "http://94.130.219.211/file_kr" };
-        private static string ip = Config.Base64DecodeEx("5ejy7e/s8u7t5fLu7e0="/*94.130.219.211*/, 220);
+#
+        private static string ip = "";// Config.Base64DecodeEx("5ejy7e/s8u7t5fLu7e0="/*94.130.219.211*/, 220);
         public static string[] newpath = new string[2] { "", "\\KR" };
         private static int port = 12055;
         public static int serverType = 0;
@@ -32,7 +33,7 @@ namespace Updater
             return System.Convert.ToBase64String(plainTextBytes);
         }
 
-        [Obfuscation(Feature = "virtualization", Exclude = false)]
+        //[Obfuscation(Feature = "virtualization", Exclude = false)]
         public static string Base64EncodeEx(string plainText, byte xor)
         {
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
@@ -43,7 +44,7 @@ namespace Updater
             return System.Convert.ToBase64String(plainTextBytes);
         }
 
-        [Obfuscation(Feature = "virtualization", Exclude = false)]
+        //[Obfuscation(Feature = "virtualization", Exclude = false)]
         public static string Base64DecodeEx(string base64EncodedData, byte xor)
         {
             var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);

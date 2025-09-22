@@ -18,13 +18,14 @@ namespace Updater
 
         public static bool DeleteFileZone(string path)
         {
-            try {
-                return DeleteFile(path + ":Zone.Identifier");
-            }
-            catch (System.Exception)
-            {
-            }
-            return false;
+            throw new NotImplementedException();
+            //try {
+            //    return DeleteFile(path + ":Zone.Identifier");
+            //}
+            //catch (System.Exception)
+            //{
+            //}
+            //return false;
         }
 
 
@@ -41,7 +42,8 @@ namespace Updater
         {
             using (MD5 mD = MD5.Create())
             {
-                using (FileStream inputStream = File.OpenRead(filename)) {
+                using (FileStream inputStream = File.OpenRead(filename))
+                {
                     return BitConverter.ToString(mD.ComputeHash(inputStream)).Replace("-", string.Empty);
                 }
             }
