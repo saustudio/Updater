@@ -9,117 +9,119 @@ using System.Text;
 
 namespace Updater
 {
-    public class WebClientEx : WebClient
-    {
-        public WebClientEx(CookieContainer container)
-        {
-            this.container = container;
-        }
+    //public class WebClientEx : WebClient
+    //{
+    //    public WebClientEx(CookieContainer container)
+    //    {
+    //        this.container = container;
+    //    }
 
-        public CookieContainer CookieContainer
-        {
-            get { return container; }
-            set { container = value; }
-        }
+    //    public CookieContainer CookieContainer
+    //    {
+    //        get { return container; }
+    //        set { container = value; }
+    //    }
 
-        private CookieContainer container = new CookieContainer();
+    //    private CookieContainer container = new CookieContainer();
 
-        protected override WebRequest GetWebRequest(Uri address)
-        {
-            WebRequest r = base.GetWebRequest(address);
-            var request = r as HttpWebRequest;
-            if (request != null)
-            {
-                request.CookieContainer = container;
-            }
-            return r;
-        }
+    //    protected override WebRequest GetWebRequest(Uri address)
+    //    {
+    //        WebRequest r = base.GetWebRequest(address);
+    //        var request = r as HttpWebRequest;
+    //        if (request != null)
+    //        {
+    //            request.CookieContainer = container;
+    //        }
+    //        return r;
+    //    }
 
-        protected override WebResponse GetWebResponse(WebRequest request, IAsyncResult result)
-        {
-            WebResponse response = base.GetWebResponse(request, result);
-            ReadCookies(response);
-            return response;
-        }
+    //    protected override WebResponse GetWebResponse(WebRequest request, IAsyncResult result)
+    //    {
+    //        WebResponse response = base.GetWebResponse(request, result);
+    //        ReadCookies(response);
+    //        return response;
+    //    }
 
-        protected override WebResponse GetWebResponse(WebRequest request)
-        {
-            WebResponse response = base.GetWebResponse(request);
-            ReadCookies(response);
-            return response;
-        }
+    //    protected override WebResponse GetWebResponse(WebRequest request)
+    //    {
+    //        WebResponse response = base.GetWebResponse(request);
+    //        ReadCookies(response);
+    //        return response;
+    //    }
 
-        private void ReadCookies(WebResponse r)
-        {
-            var response = r as HttpWebResponse;
-            if (response != null)
-            {
-                CookieCollection cookies = response.Cookies;
-                container.Add(cookies);
-            }
-        }
-    }
-
-
-    public class HttpHelper
-    {
-
-        public CookieContainer cookies = new CookieContainer();
+    //    private void ReadCookies(WebResponse r)
+    //    {
+    //        var response = r as HttpWebResponse;
+    //        if (response != null)
+    //        {
+    //            CookieCollection cookies = response.Cookies;
+    //            container.Add(cookies);
+    //        }
+    //    }
+    //}
 
 
-        //[Obfuscation(Feature = "virtualization", Exclude = false)]
+    //public class HttpHelper
+    //{
 
-        public string DoRequest(string method, string requestURI, string post_dat, bool errmsg = true, int timeout = 5000)
-        {
-            try
-            {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestURI);
+    //    public CookieContainer cookies = new CookieContainer();
 
-                request.KeepAlive = true;
-                request.ProtocolVersion = HttpVersion.Version10;
-                request.UserAgent = "Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 70.0.3538.77 Safari / 537.36";
-                request.CookieContainer = cookies;
 
-                request.Method = method;
+    //    //[
+    //
+    //    (Feature = "virtualization", Exclude = false)]
 
-                request.Timeout = timeout;
-                request.ContentType = "application/x-www-form-urlencoded";
+    //    public string DoRequest(string method, string requestURI, string post_dat, bool errmsg = true, int timeout = 5000)
+    //    {
+    //        try
+    //        {
+    //            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestURI);
 
-                if(post_dat != null)
-                {
-                    byte[] buffer = Encoding.ASCII.GetBytes(post_dat);
+    //            request.KeepAlive = true;
+    //            request.ProtocolVersion = HttpVersion.Version10;
+    //            request.UserAgent = "Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 70.0.3538.77 Safari / 537.36";
+    //            request.CookieContainer = cookies;
 
-                    request.ContentLength = buffer.Length;
+    //            request.Method = method;
 
-                    Stream requestStream = request.GetRequestStream();
+    //            request.Timeout = timeout;
+    //            request.ContentType = "application/x-www-form-urlencoded";
 
-                    requestStream.Write(buffer, 0, buffer.Length);
-                }
+    //            if(post_dat != null)
+    //            {
+    //                byte[] buffer = Encoding.ASCII.GetBytes(post_dat);
 
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+    //                request.ContentLength = buffer.Length;
 
-                Stream receiveStream = response.GetResponseStream();
+    //                Stream requestStream = request.GetRequestStream();
 
-                StreamReader readReceiveStream = new StreamReader(receiveStream, Encoding.UTF8);
+    //                requestStream.Write(buffer, 0, buffer.Length);
+    //            }
 
-                string read_data = readReceiveStream.ReadToEnd();
+    //            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
-                readReceiveStream.Close();
+    //            Stream receiveStream = response.GetResponseStream();
 
-                response.Close();
+    //            StreamReader readReceiveStream = new StreamReader(receiveStream, Encoding.UTF8);
 
-                return read_data;
+    //            string read_data = readReceiveStream.ReadToEnd();
 
-            }
-            catch (Exception ex)
-            {
-                if(errmsg)
-                {
-                    MessageBoxEx.ShowError(ex.Message, "Error", 10000);
-                }
+    //            readReceiveStream.Close();
+
+    //            response.Close();
+
+    //            return read_data;
+
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            if(errmsg)
+    //            {
+    //                MessageBoxEx.ShowError(ex.Message, "Error", 10000);
+    //            }
                 
-            }
-            return null;
-        }
-    }
+    //        }
+    //        return null;
+    //    }
+    //}
 }

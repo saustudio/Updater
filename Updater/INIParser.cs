@@ -10,11 +10,11 @@ namespace INI
 {
     public class INIParser
     {
-        [DllImport("kernel32", CharSet = CharSet.Unicode)]
-        static extern int GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
+        //[DllImport("kernel32", CharSet = CharSet.Unicode)]
+        //static extern int GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
 
-        [DllImport("kernel32", CharSet = CharSet.Unicode)]
-        static extern long WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
+        //[DllImport("kernel32", CharSet = CharSet.Unicode)]
+        //static extern long WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
 
         private string Path;
 
@@ -28,16 +28,20 @@ namespace INI
             return File.Exists(Path);
         }
 
-        public string Read(string Section, string Key,string Default)
+        public string Read(string Section, string Key, string Default)
         {
+#warning no implemented
+            return string.Empty;
             var RetVal = new StringBuilder(255);
-            GetPrivateProfileString(Section, Key, Default, RetVal, 255, Path);
+            //GetPrivateProfileString(Section, Key, Default, RetVal, 255, Path);
             return RetVal.ToString();
         }
 
         public void Write(string Section, string Key, string Value)
         {
-            WritePrivateProfileString(Section, Key, Value, Path);
+#warning no implemented
+            return;
+            //WritePrivateProfileString(Section, Key, Value, Path);
         }
 
     }

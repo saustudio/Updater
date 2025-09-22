@@ -99,7 +99,8 @@ namespace Updater
         // Token: 0x06000133 RID: 307 RVA: 0x0000798C File Offset: 0x00005B8C
         public void ThreadHwd()
         {
-            throw new NotImplementedException();
+#warning not implemented
+            return;
             //if (this.device == null)
             //{
             //    DevicesHelper devicesHelper = new DevicesHelper();
@@ -227,7 +228,7 @@ namespace Updater
         }
 
         // Token: 0x0600013E RID: 318 RVA: 0x00007BC8 File Offset: 0x00005DC8
-        [Obfuscation(Feature = "virtualization", Exclude = false)]
+        //[Obfuscation(Feature = "virtualization", Exclude = false)]
         private bool ChAt(ref string _out)
         {
             bool flag = false;
@@ -275,7 +276,8 @@ namespace Updater
             string text = Config.connect.ReceiveResponse();
             if (text.Length > 0)
             {
-                throw new NotImplementedException();
+#warning not implemented;
+                return true;
 
                 //    string[] array = text.Split(new char[] { '&' });
                 //    LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] CHECK RECEIVE LENGTH SERVER", Array.Empty<object>());
@@ -335,10 +337,11 @@ namespace Updater
         // Token: 0x06000141 RID: 321 RVA: 0x00007F04 File Offset: 0x00006104
         private bool Authorization()
         {
+#warning not implemented;
+            return true;
+
             LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] START", Array.Empty<object>());
             this.SignIn.IsEnabled = false;
-
-            throw new NotImplementedException();
 
             //if (this.device == null)
             //{
@@ -393,13 +396,12 @@ namespace Updater
                         goto IL_252;
                     }
                 }
-
-                throw new NotImplementedException();
+#warning not implemented;
                 //MessageBoxEx.ShowError(Config.Base64DecodeEx("JwAYDwIHCk4DDwcC", 110), "Error", 10000U);
             }
             else
             {
-                throw new NotImplementedException();
+#warning not implemented;
                 //MessageBoxEx.ShowError(Config.Base64DecodeEx("NxwVBhUXABEGVDgRGhMAHFQxBgYbBg==", 116), "Error", 10000U);
             }
 IL_252:
@@ -534,9 +536,9 @@ IL_252:
         private string _balance;
 
         // Token: 0x040000A2 RID: 162
-        private string _env = ""; 
-        #warning not implemented
-            //string.Concat(new string[]
+        private string _env = "";
+#warning not implemented
+        //string.Concat(new string[]
         //{
         //    //Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
         //    //"\\",

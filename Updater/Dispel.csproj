@@ -139,29 +139,11 @@
     <Compile Include="Controls\TextBoxPlaceholder.cs" />
     <Compile Include="Draw\Animation.cs" />
     <Compile Include="Draw\Animator.cs" />
-    <Compile Include="Draw\ColorPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Draw\Drawer.cs" />
     <Compile Include="Draw\FlatColors.cs" />
-    <Compile Include="Draw\RoundingButtonsComponent.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Draw\RoundingButtonsComponent.Designer.cs" />
-    <Compile Include="Draw\RR_Button.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Enums\NewsTypes.cs" />
-    <Compile Include="FormCaptcha.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormCaptcha.Designer.cs">
-      <DependentUpon>FormCaptcha.cs</DependentUpon>
-    </Compile>
     <Compile Include="HelperFile.cs" />
-    <Compile Include="HttpHelper.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="HttpHelper.cs" />
     <Compile Include="INIParser.cs" />
     <Compile Include="JSONObject.cs" />
     <Compile Include="Localization\LangInfo.cs" />
@@ -193,12 +175,6 @@
     <Compile Include="Models\SlideViewModel.cs" />
     <Compile Include="Controls\SliderControl.xaml.cs">
       <DependentUpon>SliderControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SplashScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SplashScreen.Designer.cs">
-      <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Statics\Paths.cs" />
     <Compile Include="UtillsClasses\InverseBooleanConverter.cs" />
@@ -268,16 +244,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="FormCaptcha.resx">
-      <DependentUpon>FormCaptcha.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SplashScreen.resx">
-      <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest">

@@ -12,9 +12,9 @@ namespace Updater
 {
     public class HelperFile
     {
-        [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DeleteFile(string info);
+        //[DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //public static extern bool DeleteFile(string info);
 
         public static bool DeleteFileZone(string path)
         {
