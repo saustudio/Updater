@@ -1,0 +1,95 @@
+<table border="0" align="center">
+<p style="font-size: 22px" align="center"><strong>Топ - 30 персонажей по уровню</strong></p>
+<tr>
+<th valign="top" width="50%">Никнейм</th>
+<th valign="top" width="50%">Уровень</th>
+<th valign="top" width="50%">Класс</th>
+</tr>
+<?php
+$sql = "SELECT * FROM dbo.TblPcState ORDER BY mLevel DESC";
+$params = array();
+$options = array("scrollable" => SQLSRV_CURSOR_KEYSET);
+$stmt = sqlsrv_query( $conn, $sql , $params, $options);
+
+$sql2 = "SELECT mNo, mNm, mClass FROM dbo.TblPc ORDER BY mNo DESC";
+$stmt2 = sqlsrv_query( $conn, $sql2 , $params, $options);
+$refreshTable = "TRUNCATE TABLE PcNames";
+sqlsrv_query($conn, $refreshTable);
+
+?>
+
+<?php for ($i = 1; $i <= 30; $i++): ?>
+<tr>
+<?php sqlsrv_get_field($stmt, 0)?>
+<?php sqlsrv_get_field($stmt2, 0)?>
+<?php
+$user = sqlsrv_fetch_array($stmt);
+$_SESSION['user']=
+[
+"mNo"=>$user['mNo'],
+"mLevel"=>$user['mLevel']
+];
+$user2 = sqlsrv_fetch_array($stmt2);
+$_SESSION['user2']=
+[
+"mNo"=>$user2['mNo'],
+"mNm"=>$user2['mNm'],
+"mClass"=>$user2['mClass']
+];
+$tblNomer = $_SESSION['user']['mNo'];
+$tblLevel = $_SESSION['user']['mLevel'];
+$tblNick = $_SESSION['user2']['mNm'];
+$insert = "INSERT INTO PcNames(Nomer,Level) VALUES ('$tblNomer','$tblLevel')";
+sqlsrv_query($conn, $insert);
+
+?>
+<td>
+<?php $insert2 = "SELECT mNm, mClass FROM TblPc WHERE mNo = '$tblNomer'";
+$sasa1 = sqlsrv_query($conn, $insert2);
+if( $sasa1 === false) {
+die( print_r( sqlsrv_errors(), true) );
+}
+
+while( $row = sqlsrv_fetch_array( $sasa1, SQLSRV_FETCH_ASSOC) ) {
+echo $row['mNm']."<br />";
+}
+?>
+</td>
+<td>
+<?php echo $user['mLevel']; ?>
+</td>
+<td>
+<?php
+$insert2 = "SELECT mNm, mClass FROM TblPc WHERE mNo = '$tblNomer'";
+$sasa1 = sqlsrv_query($conn, $insert2);
+if( $sasa1 === false) {
+die( print_r( sqlsrv_errors(), true) );
+}
+while( $row = sqlsrv_fetch_array( $sasa1, SQLSRV_FETCH_ASSOC) ) {
+if ($row['mClass'] == 0) {
+echo 'Танк';
+}
+else
+{
+if ($row['mClass'] == 1) echo 'Рейн';
+else
+{
+if ($row['mClass'] == 2) echo 'Маг';
+else
+{
+if ($row['mClass'] == 3) echo 'Син';
+else
+{
+if ($row['mClass'] == 4) echo 'Син';
+}
+}
+}
+}
+}
+
+
+
+?>
+</td>
+</tr>
+<?php endfor; ?>
