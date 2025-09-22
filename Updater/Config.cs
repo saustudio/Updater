@@ -33,17 +33,18 @@ namespace Updater
         }
 
         //[Obfuscation(Feature = "virtualization", Exclude = false)]
-        public static string Base64EncodeEx(string plainText, byte xor)
-        {
-            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
-            for (int i = 0; i < plainTextBytes.Length; i++)
-            {
-                plainTextBytes[i] = (byte)(plainTextBytes[i] ^ xor);
-            }
-            return System.Convert.ToBase64String(plainTextBytes);
-        }
+        //public static string Base64EncodeEx(string plainText, byte xor)
+        //{
+        //    var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+        //    for (int i = 0; i < plainTextBytes.Length; i++)
+        //    {
+        //        plainTextBytes[i] = (byte)(plainTextBytes[i] ^ xor);
+        //    }
+        //    return System.Convert.ToBase64String(plainTextBytes);
+        //}
 
-        //[Obfuscation(Feature = "virtualization", Exclude = false)]
+        //[
+        //(Feature = "virtualization", Exclude = false)]
         //public static string Base64DecodeEx(string base64EncodedData, byte xor)
         //{
         //    var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);

@@ -67,7 +67,7 @@ namespace Updater
         public CookieContainer cookies = new CookieContainer();
 
 
-        [Obfuscation(Feature = "virtualization", Exclude = false)]
+        //[Obfuscation(Feature = "virtualization", Exclude = false)]
 
         public string DoRequest(string method, string requestURI, string post_dat, bool errmsg = true, int timeout = 5000)
         {
