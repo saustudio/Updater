@@ -30,24 +30,24 @@ namespace Updater
 
 
 
-        public static string stringMD5(string text)
-        {
-            var md5Hasher = MD5.Create();
-            var wi = md5Hasher.ComputeHash(Encoding.Default.GetBytes(text));
-            return BitConverter.ToString(wi).Replace("-", "");
-        }
+        //public static string stringMD5(string text)
+        //{
+        //    var md5Hasher = MD5.Create();
+        //    var wi = md5Hasher.ComputeHash(Encoding.Default.GetBytes(text));
+        //    return BitConverter.ToString(wi).Replace("-", "");
+        //}
 
 
-        public static string FileMD5(string filename)
-        {
-            using (MD5 mD = MD5.Create())
-            {
-                using (FileStream inputStream = File.OpenRead(filename))
-                {
-                    return BitConverter.ToString(mD.ComputeHash(inputStream)).Replace("-", string.Empty);
-                }
-            }
-        }
+        //public static string FileMD5(string filename)
+        //{
+        //    using (MD5 mD = MD5.Create())
+        //    {
+        //        using (FileStream inputStream = File.OpenRead(filename))
+        //        {
+        //            return BitConverter.ToString(mD.ComputeHash(inputStream)).Replace("-", string.Empty);
+        //        }
+        //    }
+        //}
 
     }
 }

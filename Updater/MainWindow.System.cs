@@ -490,11 +490,11 @@ namespace Updater
             UpdateDownloadSpeed();
         }
 
-        private void UpdateChekMD5(string file, int start, int end)
-        {
-            string key = string.Format("{0} {1}/{2}", file, start, end);
-            this.Info = new LocString(key, key, key, key);
-        }
+        //private void UpdateChekMD5(string file, int start, int end)
+        //{
+        //    string key = string.Format("{0} {1}/{2}", file, start, end);
+        //    this.Info = new LocString(key, key, key, key);
+        //}
 
         private void ThreadPlay()
         {
@@ -513,38 +513,40 @@ namespace Updater
 
                 foreach (string key in this.hashes.keys)
                 {
-                    if (File.Exists(Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key))
-                    {
-                        FileInfo fileInfo = new FileInfo(Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key);
-                        if (this.hashes[key].HasField("important"))
-                        {
-                            if (HelperFile.FileMD5(Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key) != this.hashes[key]["md5"].str)
-                            {
-                                this.loadFiles.Add(new FileDownloadInfo(key, Convert.ToInt32(this.hashes[key]["size"].str)));
-                                this.totalSize += Convert.ToInt32(this.hashes[key]["size"].str);
-                            }
-                        }
-                        else if (fileInfo.LastWriteTimeUtc.ToString("dd.MM.yyyy H:mm:ss") != this.hashes[key]["time"].str || fileInfo.Length.ToString() != this.hashes[key]["size"].str)
-                        {
-                            if (HelperFile.FileMD5(Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key) != this.hashes[key]["md5"].str)
-                            {
-                                this.loadFiles.Add(new FileDownloadInfo(key, Convert.ToInt32(this.hashes[key]["size"].str)));
-                                this.totalSize += Convert.ToInt32(this.hashes[key]["size"].str);
-                            }
-                            else
-                            {
-                                Directory.SetLastWriteTimeUtc(
-                                     Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key,
-                                     DateTime.ParseExact(this.hashes[key]["time"].str, "dd.MM.yyyy H:mm:ss",
-                                     CultureInfo.InvariantCulture));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        this.loadFiles.Add(new FileDownloadInfo(key, Convert.ToInt32(this.hashes[key]["size"].str)));
-                        this.totalSize += Convert.ToInt32(this.hashes[key]["size"].str);
-                    }
+#warning MD5 rmove
+                    throw new NotImplementedException();
+                    //if (File.Exists(Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key))
+                    //{
+                    //    FileInfo fileInfo = new FileInfo(Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key);
+                    //    if (this.hashes[key].HasField("important"))
+                    //    {
+                    //        if (HelperFile.FileMD5(Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key) != this.hashes[key]["md5"].str)
+                    //        {
+                    //            this.loadFiles.Add(new FileDownloadInfo(key, Convert.ToInt32(this.hashes[key]["size"].str)));
+                    //            this.totalSize += Convert.ToInt32(this.hashes[key]["size"].str);
+                    //        }
+                    //    }
+                    //    else if (fileInfo.LastWriteTimeUtc.ToString("dd.MM.yyyy H:mm:ss") != this.hashes[key]["time"].str || fileInfo.Length.ToString() != this.hashes[key]["size"].str)
+                    //    {
+                    //        if (HelperFile.FileMD5(Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key) != this.hashes[key]["md5"].str)
+                    //        {
+                    //            this.loadFiles.Add(new FileDownloadInfo(key, Convert.ToInt32(this.hashes[key]["size"].str)));
+                    //            this.totalSize += Convert.ToInt32(this.hashes[key]["size"].str);
+                    //        }
+                    //        else
+                    //        {
+                    //            Directory.SetLastWriteTimeUtc(
+                    //                 Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key,
+                    //                 DateTime.ParseExact(this.hashes[key]["time"].str, "dd.MM.yyyy H:mm:ss",
+                    //                 CultureInfo.InvariantCulture));
+                    //        }
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    this.loadFiles.Add(new FileDownloadInfo(key, Convert.ToInt32(this.hashes[key]["size"].str)));
+                    //    this.totalSize += Convert.ToInt32(this.hashes[key]["size"].str);
+                    //}
                     this.ProgressFull++;
                 }
 
@@ -590,20 +592,22 @@ namespace Updater
 
                 foreach (string key in this.hashes.keys)
                 {
+#warning MD5 rmove
+                    throw new NotImplementedException();
 
-                    if (File.Exists(Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key))
-                    {
-                        if (HelperFile.FileMD5(Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key) != this.hashes[key]["md5"].str)
-                        {
-                            this.loadFiles.Add(new FileDownloadInfo(key, Convert.ToInt32(this.hashes[key]["size"].str)));
-                            this.totalSize += Convert.ToInt32(this.hashes[key]["size"].str);
-                        }
-                    }
-                    else
-                    {
-                        this.loadFiles.Add(new FileDownloadInfo(key, Convert.ToInt32(this.hashes[key]["size"].str)));
-                        this.totalSize += Convert.ToInt32(this.hashes[key]["size"].str);
-                    }
+                    //if (File.Exists(Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key))
+                    //{
+                    //    if (HelperFile.FileMD5(Directory.GetCurrentDirectory() + Config.newpath[Config.type] + key) != this.hashes[key]["md5"].str)
+                    //    {
+                    //        this.loadFiles.Add(new FileDownloadInfo(key, Convert.ToInt32(this.hashes[key]["size"].str)));
+                    //        this.totalSize += Convert.ToInt32(this.hashes[key]["size"].str);
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    this.loadFiles.Add(new FileDownloadInfo(key, Convert.ToInt32(this.hashes[key]["size"].str)));
+                    //    this.totalSize += Convert.ToInt32(this.hashes[key]["size"].str);
+                    //}
                     this.ProgressFull++;
                 }
 

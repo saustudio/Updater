@@ -12,13 +12,17 @@ namespace Updater
         public static int type = 0;
 
 
-        public static string[] weburl = new string[2] { "http://94.130.219.211/file_kr", "http://94.130.219.211/file_kr" };
+        //public static string[] weburl = new string[2] { "http://94.130.219.211/file_kr", "http://94.130.219.211/file_kr" };
+        #warning Add your server address
+        public static string[] weburl = new string[2]; 
         private static string ip = "";// Config.Base64DecodeEx("5ejy7e/s8u7t5fLu7e0="/*94.130.219.211*/, 220);
         public static string[] newpath = new string[2] { "", "\\KR" };
         private static int port = 12055;
         public static int serverType = 0;
         public static ClientData connect = new ClientData(ip, port);
-        public static string UTMD5 = HelperFile.stringMD5(string.Format("{0}{1}{2}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Environment.TickCount, new Random().Next(1, 100000)));
+        public static string UTMD5 = "";
+#warning MD5 remove
+        //HelperFile.stringMD5(string.Format("{0}{1}{2}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Environment.TickCount, new Random().Next(1, 100000)));
 
 
         public static string _urlNocacheUrl()
