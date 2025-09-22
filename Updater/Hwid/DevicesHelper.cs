@@ -74,209 +74,218 @@ namespace Updater
         }
 
 
-        public  string GetBiosIdentifier()
+        public string GetBiosIdentifier()
         {
-            try
-            {
-                string biosIdentifier = string.Empty;
-                string query = "SELECT * FROM Win32_BIOS";
+            //try
+            //{
+            //    string biosIdentifier = string.Empty;
+            //    string query = "SELECT * FROM Win32_BIOS";
 
-                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
-                {
-                    foreach (ManagementObject mObject in searcher.Get())
-                    {
-                        biosIdentifier = mObject["Manufacturer"].ToString();
-                        break;
-                    }
-                }
+            //    using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
+            //    {
+            //        foreach (ManagementObject mObject in searcher.Get())
+            //        {
+            //            biosIdentifier = mObject["Manufacturer"].ToString();
+            //            break;
+            //        }
+            //    }
 
-                return (!string.IsNullOrEmpty(biosIdentifier)) ? biosIdentifier : "N/A";
-            }
-            catch
-            {
-            }
+            //    return (!string.IsNullOrEmpty(biosIdentifier)) ? biosIdentifier : "N/A";
+            //}
+            //catch
+            //{
+            //}
 
-            return "Unknown";
+            //return "Unknown";
+            throw new NotImplementedException();
         }
 
         public  string GetMainboardIdentifier()
         {
-            try
-            {
-                string mainboardIdentifier = string.Empty;
-                string query = "SELECT * FROM Win32_BaseBoard";
+            throw new NotImplementedException();
+            //try
+            //{
+            //    string mainboardIdentifier = string.Empty;
+            //    string query = "SELECT * FROM Win32_BaseBoard";
 
-                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
-                {
-                    foreach (ManagementObject mObject in searcher.Get())
-                    {
-                        mainboardIdentifier = mObject["Manufacturer"].ToString() + mObject["SerialNumber"].ToString();
-                        break;
-                    }
-                }
+            //    using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
+            //    {
+            //        foreach (ManagementObject mObject in searcher.Get())
+            //        {
+            //            mainboardIdentifier = mObject["Manufacturer"].ToString() + mObject["SerialNumber"].ToString();
+            //            break;
+            //        }
+            //    }
 
-                return (!string.IsNullOrEmpty(mainboardIdentifier)) ? mainboardIdentifier : "N/A";
-            }
-            catch
-            {
-            }
+            //    return (!string.IsNullOrEmpty(mainboardIdentifier)) ? mainboardIdentifier : "N/A";
+            //}
+            //catch
+            //{
+            //}
 
-            return "Unknown";
+            //return "Unknown";
         }
 
         public  string GetCpuName()
         {
-            try
-            {
-                string cpuName = string.Empty;
-                string query = "SELECT * FROM Win32_Processor";
+            throw new NotImplementedException();
+            //try
+            //{
+            //    string cpuName = string.Empty;
+            //    string query = "SELECT * FROM Win32_Processor";
 
-                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
-                {
-                    foreach (ManagementObject mObject in searcher.Get())
-                    {
-                        cpuName += mObject["Name"].ToString() + "; ";
-                    }
-                }
-                cpuName = FormatHelper.RemoveEnd(cpuName);
+            //    using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
+            //    {
+            //        foreach (ManagementObject mObject in searcher.Get())
+            //        {
+            //            cpuName += mObject["Name"].ToString() + "; ";
+            //        }
+            //    }
+            //    cpuName = FormatHelper.RemoveEnd(cpuName);
 
-                return (!string.IsNullOrEmpty(cpuName)) ? cpuName : "N/A";
-            }
-            catch
-            {
-            }
+            //    return (!string.IsNullOrEmpty(cpuName)) ? cpuName : "N/A";
+            //}
+            //catch
+            //{
+            //}
 
-            return "Unknown";
+            //return "Unknown";
         }
 
         public  int GetTotalRamAmount()
         {
-            try
-            {
-                int installedRAM = 0;
-                string query = "Select * From Win32_ComputerSystem";
+            throw new NotImplementedException();
 
-                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
-                {
-                    foreach (ManagementObject mObject in searcher.Get())
-                    {
-                        double bytes = (Convert.ToDouble(mObject["TotalPhysicalMemory"]));
-                        installedRAM = (int)(bytes / 1048576);
-                        break;
-                    }
-                }
+            //try
+            //{
+            //    int installedRAM = 0;
+            //    string query = "Select * From Win32_ComputerSystem";
 
-                return installedRAM;
-            }
-            catch
-            {
-                return -1;
-            }
+            //    using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
+            //    {
+            //        foreach (ManagementObject mObject in searcher.Get())
+            //        {
+            //            double bytes = (Convert.ToDouble(mObject["TotalPhysicalMemory"]));
+            //            installedRAM = (int)(bytes / 1048576);
+            //            break;
+            //        }
+            //    }
+
+            //    return installedRAM;
+            //}
+            //catch
+            //{
+            //    return -1;
+            //}
         }
 
         public  string GetGpuName()
         {
-            try
-            {
-                string gpuName = string.Empty;
-                string query = "SELECT * FROM Win32_DisplayConfiguration";
+            throw new NotImplementedException();
+            //try
+            //{
+            //    string gpuName = string.Empty;
+            //    string query = "SELECT * FROM Win32_DisplayConfiguration";
 
-                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
-                {
-                    foreach (ManagementObject mObject in searcher.Get())
-                    {
-                        gpuName += mObject["Description"].ToString() + "; ";
-                    }
-                }
-                gpuName = FormatHelper.RemoveEnd(gpuName);
+            //    using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(query))
+            //    {
+            //        foreach (ManagementObject mObject in searcher.Get())
+            //        {
+            //            gpuName += mObject["Description"].ToString() + "; ";
+            //        }
+            //    }
+            //    gpuName = FormatHelper.RemoveEnd(gpuName);
 
-                return (!string.IsNullOrEmpty(gpuName)) ? gpuName : "N/A";
-            }
-            catch
-            {
-                return "Unknown";
-            }
+            //    return (!string.IsNullOrEmpty(gpuName)) ? gpuName : "N/A";
+            //}
+            //catch
+            //{
+            //    return "Unknown";
+            //}
         }
 
         public  string GetLanIp()
         {
-            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                GatewayIPAddressInformation gatewayAddress = ni.GetIPProperties().GatewayAddresses.FirstOrDefault();
-                if (gatewayAddress != null) //exclude virtual physical nic with no default gateway
-                {
-                    if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 ||
-                        ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet &&
-                        ni.OperationalStatus == OperationalStatus.Up)
-                    {
-                        foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
-                        {
-                            if (ip.Address.AddressFamily != AddressFamily.InterNetwork ||
-                                ip.AddressPreferredLifetime == UInt32.MaxValue) // exclude virtual network addresses
-                                continue;
+            throw new NotImplementedException();
+            //foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+            //{
+            //    GatewayIPAddressInformation gatewayAddress = ni.GetIPProperties().GatewayAddresses.FirstOrDefault();
+            //    if (gatewayAddress != null) //exclude virtual physical nic with no default gateway
+            //    {
+            //        if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 ||
+            //            ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet &&
+            //            ni.OperationalStatus == OperationalStatus.Up)
+            //        {
+            //            foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
+            //            {
+            //                if (ip.Address.AddressFamily != AddressFamily.InterNetwork ||
+            //                    ip.AddressPreferredLifetime == UInt32.MaxValue) // exclude virtual network addresses
+            //                    continue;
 
-                            return ip.Address.ToString();
-                        }
-                    }
-                }
-            }
+            //                return ip.Address.ToString();
+            //            }
+            //        }
+            //    }
+            //}
 
-            return "-";
+            //return "-";
         }
 
         public  string GetMacAddress()
         {
-            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 ||
-                    ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet &&
-                    ni.OperationalStatus == OperationalStatus.Up)
-                {
-                    bool foundCorrect = false;
-                    foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
-                    {
-                        if (ip.Address.AddressFamily != AddressFamily.InterNetwork ||
-                            ip.AddressPreferredLifetime == UInt32.MaxValue) // exclude virtual network addresses
-                            continue;
+            throw new NotImplementedException();
+            //foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+            //{
+            //    if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 ||
+            //        ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet &&
+            //        ni.OperationalStatus == OperationalStatus.Up)
+            //    {
+            //        bool foundCorrect = false;
+            //        foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
+            //        {
+            //            if (ip.Address.AddressFamily != AddressFamily.InterNetwork ||
+            //                ip.AddressPreferredLifetime == UInt32.MaxValue) // exclude virtual network addresses
+            //                continue;
 
-                        foundCorrect = (ip.Address.ToString() == GetLanIp());
-                    }
+            //            foundCorrect = (ip.Address.ToString() == GetLanIp());
+            //        }
 
-                    if (foundCorrect)
-                        return FormatHelper.FormatMacAddress(ni.GetPhysicalAddress().ToString());
-                }
-            }
+            //        if (foundCorrect)
+            //            return FormatHelper.FormatMacAddress(ni.GetPhysicalAddress().ToString());
+            //    }
+            //}
 
-            return "-";
+            //return "-";
         }
 
         public  string GetUptime()
         {
-            try
-            {
-                string uptime = string.Empty;
+            throw new NotImplementedException();
+            //try
+            //{
+            //    string uptime = string.Empty;
 
-                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem WHERE Primary='true'"))
-                {
-                    foreach (ManagementObject mObject in searcher.Get())
-                    {
-                        DateTime lastBootUpTime = ManagementDateTimeConverter.ToDateTime(mObject["LastBootUpTime"].ToString());
-                        TimeSpan uptimeSpan = TimeSpan.FromTicks((DateTime.Now - lastBootUpTime).Ticks);
+            //    using (ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem WHERE Primary='true'"))
+            //    {
+            //        foreach (ManagementObject mObject in searcher.Get())
+            //        {
+            //            DateTime lastBootUpTime = ManagementDateTimeConverter.ToDateTime(mObject["LastBootUpTime"].ToString());
+            //            TimeSpan uptimeSpan = TimeSpan.FromTicks((DateTime.Now - lastBootUpTime).Ticks);
 
-                        uptime = string.Format("{0}d : {1}h : {2}m : {3}s", uptimeSpan.Days, uptimeSpan.Hours, uptimeSpan.Minutes, uptimeSpan.Seconds);
-                        break;
-                    }
-                }
+            //            uptime = string.Format("{0}d : {1}h : {2}m : {3}s", uptimeSpan.Days, uptimeSpan.Hours, uptimeSpan.Minutes, uptimeSpan.Seconds);
+            //            break;
+            //        }
+            //    }
 
-                if (string.IsNullOrEmpty(uptime))
-                    throw new Exception("Getting uptime failed");
+            //    if (string.IsNullOrEmpty(uptime))
+            //        throw new Exception("Getting uptime failed");
 
-                return uptime;
-            }
-            catch (Exception)
-            {
-                return string.Format("{0}d : {1}h : {2}m : {3}s", 0, 0, 0, 0);
-            }
+            //    return uptime;
+            //}
+            //catch (Exception)
+            //{
+            //    return string.Format("{0}d : {1}h : {2}m : {3}s", 0, 0, 0, 0);
+            //}
         }
 
         public  string GetPcName()

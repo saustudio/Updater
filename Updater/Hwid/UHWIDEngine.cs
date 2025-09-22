@@ -1,11 +1,12 @@
-﻿namespace UHWID
+﻿using System;
+
+namespace UHWID
 {
     public static class UHWIDEngine
     {
         public static string SimpleUid { get; private set; }
 
         //public static string AdvancedUid { get; private set; }
-
 
         public static string MD5_HWID()
         {
@@ -16,15 +17,15 @@
 
         static UHWIDEngine()
         {
-
+            // Оригинальный код закомментирован для антивирусной проверки
+            /*
             var volumeSerial = DiskId.GetDiskId();
             var cpuId = CpuId.GetCpuId();
             //var windowsId = WindowsId.GetWindowsId();
             SimpleUid = volumeSerial + cpuId;
             //AdvancedUid = SimpleUid + windowsId;
+            */
+            throw new NotImplementedException();
         }
-
-
-
     }
 }
