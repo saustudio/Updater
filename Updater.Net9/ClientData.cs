@@ -48,6 +48,7 @@ namespace Updater
         //    //}
         //    //_out[0] = (byte)(_out[0] ^ _out[1]);
         //    //return _out;
+        //    throw new NotImplementedException();
         //}
 
 
@@ -64,6 +65,7 @@ namespace Updater
         //    //    a++;
         //    //}
         //    //return _out;
+        //    throw new NotImplementedException();
         //}
 
         public ClientData(string ipp, int portt)

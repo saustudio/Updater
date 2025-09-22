@@ -30,7 +30,7 @@ namespace INI
 
         public string Read(string Section, string Key, string Default)
         {
-#warning fix it
+#warning no implemented
             return string.Empty;
             var RetVal = new StringBuilder(255);
             //GetPrivateProfileString(Section, Key, Default, RetVal, 255, Path);
@@ -39,7 +39,7 @@ namespace INI
 
         public void Write(string Section, string Key, string Value)
         {
-#warning fix it
+#warning no implemented
             return;
             //WritePrivateProfileString(Section, Key, Value, Path);
         }

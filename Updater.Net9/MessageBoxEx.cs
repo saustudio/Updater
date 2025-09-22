@@ -3,6 +3,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Windows.Forms;
+using System.Windows;
 
 //[assembly: SecurityPermission(SecurityAction.RequestMinimum, UnmanagedCode = true)]
 
@@ -10,13 +11,13 @@ namespace MessageEx
 {
     public class MessageBoxEx
     {
-        public static DialogResult Show(string text, uint uTimeout)
+        public static MessageBoxResult Show(string text, uint uTimeout)
         {
             Setup("", uTimeout);
             return MessageBox.Show(text);
         }
 
-        public static DialogResult Show(string text, string caption, uint uTimeout)
+        public static MessageBoxResult Show(string text, string caption, uint uTimeout)
         {
             Setup(caption, uTimeout);
             return MessageBox.Show(text, caption);
@@ -24,22 +25,22 @@ namespace MessageEx
 
 
 
-        public static DialogResult ShowInfo(string text, string caption, uint uTimeout)
+        public static MessageBoxResult ShowInfo(string text, string caption, uint uTimeout)
         {
             Setup(caption, uTimeout);
-            return MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        public static DialogResult ShowWarning(string text, string caption, uint uTimeout)
+        public static MessageBoxResult ShowWarning(string text, string caption, uint uTimeout)
         {
             Setup(caption, uTimeout);
-            return MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        public static DialogResult ShowError(string text, string caption, uint uTimeout)
+        public static MessageBoxResult ShowError(string text, string caption, uint uTimeout)
         {
             Setup(caption, uTimeout);
-            return MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
 
@@ -108,7 +109,7 @@ namespace MessageEx
 
         private static void Setup(string caption, uint uTimeout)
         {
-#warning fix it
+#warning no implemented
             //if (hHook != IntPtr.Zero)
             //	throw new NotSupportedException("multiple calls are not supported");
 
@@ -119,7 +120,7 @@ namespace MessageEx
 
         private static IntPtr MessageBoxHookProc(int nCode, IntPtr wParam, IntPtr lParam)
         {
-#warning fix it
+#warning no implemented
             return IntPtr.Zero;
             //if (nCode < 0)
             //	return CallNextHookEx(hHook, nCode, wParam, lParam);
@@ -148,7 +149,7 @@ namespace MessageEx
 
         private static void MessageBoxTimerProc(IntPtr hWnd, uint uMsg, UIntPtr nIDEvent, uint dwTime)
         {
-#warning fix it
+#warning no implemented
             //if (nIDEvent == (UIntPtr)TimerID)
             //{
             //	short dw = (short)SendMessage(hWnd, DM_GETDEFID, IntPtr.Zero, IntPtr.Zero);

@@ -1,0 +1,1150 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Updater"
+                    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
+                    xmlns:Themes1="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib"
+                    xmlns:localization="clr-namespace:Updater.Localization"
+                    xmlns:controls="clr-namespace:Updater.Controls"
+                    xmlns:utillsClasses="clr-namespace:Updater.UtillsClasses"
+                    xmlns:drawing="clr-namespace:System.Drawing;assembly=System.Drawing">
+    <drawing:ImageConverter x:Key="converterImage" />
+
+    <utillsClasses:TextInputToVisibilityConverter x:Key="TextInputToVisibilityConverter" />
+
+    <Storyboard x:Key="OpenAnimation">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+            <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+            <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1" />
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+
+    <ControlTemplate x:Key="BigBannerButtonControlTemplate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid" Background="{TemplateBinding Background}" Opacity="0.9">
+            <TextBlock TextAlignment="Left" HorizontalAlignment="Left" Height="46.25" Margin="35.667,57.667,0,0"
+                       TextWrapping="Wrap" Text="{TemplateBinding Content}" VerticalAlignment="Top" Width="163.5"
+                       Foreground="White" FontSize="18" FontFamily="Roboto" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" TargetName="grid" Value="1" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="LoginMenu" TargetType="{x:Type MenuItem}">
+        <Grid Background="#f02E2C2D" Height="25">
+            <MenuItem Foreground="Transparent" Background="Transparent" Width="0" />
+            <StackPanel Orientation="Horizontal">
+                <Line X1="10"></Line>
+                <Label FontWeight="Light" FontFamily="Leelawadee UI Semilight" Padding="1" Foreground="WhiteSmoke"
+                       Content="{TemplateBinding Header}">
+                </Label>
+                <Line X1="10"></Line>
+            </StackPanel>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.15" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ColorAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                Storyboard.TargetName="rectangle">
+                                <EasingColorKeyFrame KeyTime="0" Value="#FFF5B96F" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"
+                                Storyboard.TargetName="textBlock">
+                                <EasingColorKeyFrame KeyTime="0" Value="Black" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed" />
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                           Storyboard.TargetName="grid">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0.68" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Rectangle x:Name="rectangle" Fill="#FFFFAD46" HorizontalAlignment="Stretch" Stroke="{x:Null}" Width="Auto"
+                       RadiusX="6" RadiusY="6" />
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Content}" Width="Auto"
+                       Foreground="#FFFFEBD1" FontFamily="Raleway" FontSize="{TemplateBinding FontSize}"
+                       FontWeight="Medium" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="TrayExitTemplate" TargetType="{x:Type Button}">
+        <Grid Background="{TemplateBinding Background}" />
+    </ControlTemplate>
+    <ControlTemplate x:Key="ServerRadioTemplate" TargetType="{x:Type RadioButton}">
+        <Grid Background="Transparent">
+            <Rectangle x:Name="rectangle" HorizontalAlignment="Stretch" Stroke="#FFEE9D37" Width="Auto"
+                       StrokeThickness="2" RadiusX="11" RadiusY="11" Visibility="Hidden">
+                <Rectangle.Fill>
+                    <RadialGradientBrush RadiusX="-3" GradientOrigin="0.5,0.5" Center="0.5,0.5">
+                        <GradientStop Color="#FFEE9D37" Offset="1" />
+                        <GradientStop Color="#FFEE9D37" Offset="1" />
+                        <GradientStop Color="#00EE9D37" Offset="0.043" />
+                        <GradientStop Color="#00EE9D37" Offset="0.954" />
+                        <GradientStop Color="#ECEE9D37" Offset="0.994" />
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Visibility" TargetName="rectangle" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Visibility" TargetName="rectangle" Value="Visible" />
+                <Setter Property="Stroke" TargetName="rectangle" Value="#FFFDC176" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="RadioLang" TargetType="{x:Type RadioButton}">
+        <Grid x:Name="grid" Background="{TemplateBinding Background}" />
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Opacity" TargetName="grid" Value="0.455" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="HelpTemplate" TargetType="{x:Type Button}">
+        <Grid>
+            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"
+                       Text="{TemplateBinding Content}" Width="Auto" VerticalAlignment="Center" Foreground="#FFE9F5F7"
+                       FontSize="{TemplateBinding FontSize}" FontFamily="Raleway" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="SimpleBackgroundTemplate" TargetType="{x:Type Button}">
+        <Grid Background="{TemplateBinding Background}" />
+    </ControlTemplate>
+    <Style TargetType="{x:Type ProgressBar}" x:Key="Progress">
+        <Setter Property="Foreground" Value="#FF06B025" />
+        <Setter Property="Background" Value="#FFE6E6E6" />
+        <Setter Property="BorderBrush" Value="#FFBCBCBC" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ProgressBar}">
+                    <Grid x:Name="TemplateRoot">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Determinate" />
+                                <VisualState x:Name="Indeterminate">
+                                    <Storyboard RepeatBehavior="Forever">
+                                        <DoubleAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+                                            Storyboard.TargetName="Animation">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.25" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.25" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <PointAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)"
+                                            Storyboard.TargetName="Animation">
+                                            <EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5" />
+                                            <EasingPointKeyFrame KeyTime="0:0:1" Value="0.5,0.5" />
+                                            <EasingPointKeyFrame KeyTime="0:0:2" Value="1.5,0.5" />
+                                        </PointAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" />
+                        <Rectangle x:Name="PART_Track" RadiusX="6" RadiusY="5" />
+                        <Grid x:Name="PART_Indicator">
+                            <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}" RadiusX="3" RadiusY="3" />
+                            <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}"
+                                       RenderTransformOrigin="0.5,0.5" RadiusX="5" RadiusY="2">
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation" Value="Vertical">
+                            <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                <Setter.Value>
+                                    <RotateTransform Angle="-90" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsIndeterminate" Value="True">
+                            <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate x:Key="StartButtonPictureTemplate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid">
+            <Grid.Background>
+                <ImageBrush ImageSource="Pictures/Start.png" />
+            </Grid.Background>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.2" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver" />
+                    <VisualState x:Name="Pressed" />
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                           Storyboard.TargetName="grid">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0.75" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Rectangle x:Name="rectangle" RadiusX="5" RadiusY="5" Fill="#00000000" />
+            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Content}"
+                       Foreground="White" FontSize="22" TextAlignment="Center" FontFamily="Roboto"
+                       RenderTransformOrigin="0.5,0.5" FontWeight="Normal" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Fill" TargetName="rectangle" Value="#0CFFFFFF" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="grid" Value="0.8" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="CancelButtonPictureTemplate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid" Background="#FFEC3838">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.2" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver" />
+                    <VisualState x:Name="Pressed" />
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                           Storyboard.TargetName="grid">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0.71" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <TextBlock TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"
+                       Text="{TemplateBinding Content}" Foreground="White" FontFamily="Roboto" FontSize="14" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="grid" Value="Red" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="grid" Value="0.7" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="LinkButtonTemplate" TargetType="{x:Type Button}">
+        <Grid>
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" TextDecorations="Underline" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" Text="{TemplateBinding Content}"
+                       FontSize="{TemplateBinding FontSize}" Foreground="#FF31C9F1"
+                       FontFamily="Montserrat Alternates Light" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="TextDecorations" TargetName="textBlock" Value="None" />
+                <Setter Property="Foreground" TargetName="textBlock" Value="White" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="LinkButton" TargetType="{x:Type Button}">
+        <Grid Margin="0,0,0,-3.5">
+            <TextBlock x:Name="textBlock" TextAlignment="Center" Margin="0,2.25,0,0" TextWrapping="Wrap"
+                       Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                       FontFamily="Leelawadee UI Semilight" Height="Auto" VerticalAlignment="Stretch"
+                       FontSize="{TemplateBinding FontSize}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="TextDecorations" TargetName="textBlock" Value="Underline" />
+                <Setter Property="Foreground" TargetName="textBlock" Value="#FFF4F4F4" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="LinkButton2" TargetType="{x:Type Button}">
+        <Grid Margin="0,0,0,-3.5">
+            <TextBlock x:Name="textBlock" TextAlignment="Center" Margin="0,2.25,0,0" TextWrapping="Wrap"
+                       Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" FontFamily="Arial"
+                       Height="Auto" VerticalAlignment="Stretch" FontSize="13" FontWeight="SemiBold" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="TextDecorations" TargetName="textBlock" Value="Underline" />
+                <Setter Property="Foreground" TargetName="textBlock" Value="#009999" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="VKTwitter" TargetType="{x:Type Button}">
+        <Grid x:Name="grid" OpacityMask="{TemplateBinding OpacityMask}" Background="#D4D4D4" />
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="grid" Value="#e6ffff" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+    <ControlTemplate x:Key="TextBoxLogin" TargetType="{x:Type TextBoxBase}">
+        <Themes:ClassicBorderDecorator x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}"
+                                       BorderThickness="{TemplateBinding BorderThickness}" BorderStyle="Sunken"
+                                       Background="{TemplateBinding Background}">
+            <ScrollViewer x:Name="PART_ContentHost" />
+        </Themes:ClassicBorderDecorator>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" TargetName="Bd"
+                        Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+            </Trigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource Self}}" Value="true" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="BorderThickness" TargetName="Bd" Value="5" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="BorderBrush" TargetName="Bd"
+                        Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+            </MultiDataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="TextBoxBaseControlTemplate1" TargetType="{x:Type TextBoxBase}">
+        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+                SnapsToDevicePixels="True">
+            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden"
+                          VerticalScrollBarVisibility="Hidden" />
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="border" Value="0.56" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="TextBoxBaseControlTemplate2" TargetType="{x:Type PasswordBox}">
+        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+                SnapsToDevicePixels="True">
+            <ScrollViewer x:Name="PART_ContentHost"
+                          Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="border" Value="0.56" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="RegButton" TargetType="{x:Type Button}">
+        <Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.1" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ColorAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                Storyboard.TargetName="rectangle">
+                                <EasingColorKeyFrame KeyTime="0" Value="#009999" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"
+                                Storyboard.TargetName="textBlock">
+                                <EasingColorKeyFrame KeyTime="0" Value="#FFF4F4F4" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed" />
+                    <VisualState x:Name="Disabled" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Rectangle x:Name="rectangle" Fill="#00000000" Stroke="#009999" RadiusX="5" RadiusY="5" />
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       TextAlignment="Center" Text="{TemplateBinding Content}" FontFamily="Roboto"
+                       FontSize="{TemplateBinding FontSize}"
+                       Foreground="#ffffff" FontWeight="Normal" />
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="SaveLogin" TargetType="{x:Type CheckBox}">
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Rectangle Margin="2" SnapsToDevicePixels="True"
+                                           Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                                           StrokeThickness="1" StrokeDashArray="1 2" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="#FF707070" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="checkBoxBorder" BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" BorderBrush="#FF33526F">
+                            <Grid x:Name="markGrid" Height="14" Width="14" Background="#FF0B1321">
+                                <Path x:Name="optionMark"
+                                      Data="M1.35355 2.64645C1.15829 2.45118 0.841709 2.45118 0.646447 2.64645C0.451184 2.84171 0.451184 3.15829 0.646447 3.35355L1.35355 2.64645ZM3 5L2.64645 5.35355C2.84171 5.54882 3.15829 5.54882 3.35355 5.35355L3 5ZM7.35355 1.35355C7.54882 1.15829 7.54882 0.841709 7.35355 0.646447C7.15829 0.451184 6.84171 0.451184 6.64645 0.646447L7.35355 1.35355ZM0.646447 3.35355L2.64645 5.35355L3.35355 4.64645L1.35355 2.64645L0.646447 3.35355ZM3.35355 5.35355L7.35355 1.35355L6.64645 0.646447L2.64645 4.64645L3.35355 5.35355Z"
+                                      Fill="#FFE6D1D1" Opacity="0" Margin="2,3.292,2,2.833" Stretch="Fill" />
+                                <Rectangle x:Name="indeterminateMark" Fill="#FFEEE2E2" Margin="2" Opacity="0" />
+                            </Grid>
+                        </Border>
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}" Grid.Column="2"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasContent" Value="True">
+                            <Setter Property="FocusVisualStyle">
+                                <Setter.Value>
+                                    <Style>
+                                        <Setter Property="Control.Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <Rectangle Margin="14,0,0,0" SnapsToDevicePixels="True"
+                                                               Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                                                               StrokeThickness="1" StrokeDashArray="1 2" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Padding" Value="4,-1,0,0" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="checkBoxBorder" Value="#FFF3F9FF" />
+                            <Setter Property="Fill" TargetName="optionMark" Value="#FFE6D1D1" />
+                            <Setter Property="Fill" TargetName="indeterminateMark" Value="#FF212121" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="checkBoxBorder" Value="#FFE6E6E6" />
+                            <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="#FFBCBCBC" />
+                            <Setter Property="Fill" TargetName="optionMark" Value="#FF707070" />
+                            <Setter Property="Fill" TargetName="indeterminateMark" Value="#FF707070" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="checkBoxBorder" Value="#FFD9ECFF" />
+                            <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="#FF3C77DD" />
+                            <Setter Property="Fill" TargetName="optionMark" Value="#FF212121" />
+                            <Setter Property="Fill" TargetName="indeterminateMark" Value="#FF212121" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Opacity" TargetName="optionMark" Value="1" />
+                            <Setter Property="Opacity" TargetName="indeterminateMark" Value="0" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter Property="Opacity" TargetName="optionMark" Value="0" />
+                            <Setter Property="Opacity" TargetName="indeterminateMark" Value="1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate x:Key="CheckButtonTemplte" TargetType="{x:Type Button}">
+        <Grid x:Name="grid" Background="#FF88C6FF">
+            <TextBlock Margin="0" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"
+                       Text="{TemplateBinding Content}" Foreground="#FFE5E6E6" FontFamily="Roboto" FontSize="14"
+                       FontWeight="Normal" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="grid" Value="0.8" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="grid" Value="#FF4096E4" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="ButtonLinkkk" TargetType="{x:Type Button}">
+        <Grid Background="{TemplateBinding Background}" />
+    </ControlTemplate>
+    <Style x:Key="ShowPassStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#FF575757" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <!-- Flat ComboBox -->
+    <SolidColorBrush x:Key="ComboBoxNormalBorderBrush" Color="#e3e9ef" />
+    <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="#fff" />
+    <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="#888" />
+    <SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="#eee" />
+    <SolidColorBrush x:Key="ComboBoxDisabledBorderBrush" Color="#888" />
+
+    <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="2" Name="Border"
+                    BorderBrush="Transparent"
+                    CornerRadius="0" BorderThickness="1, 1, 1, 1"
+                    Background="Transparent" />
+            <Border Grid.Column="1" Margin="1, 1, 1, 1" BorderBrush="#444" Name="ButtonBorder"
+                    CornerRadius="0, 0, 0, 0" BorderThickness="0, 0, 0, 0"
+                    Background="Transparent" />
+
+            <Path Name="Arrow" Grid.Column="1"
+                  Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
+                  HorizontalAlignment="Center" Fill="White"
+                  VerticalAlignment="Center" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="ToggleButton.IsChecked" Value="True">
+                <Setter Property="Shape.Fill" TargetName="Arrow" Value="#FF8D979E" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="ComboBoxFlatStyle" TargetType="{x:Type ComboBox}">
+        <Setter Property="UIElement.SnapsToDevicePixels" Value="True" />
+        <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="TextElement.Foreground" Value="Black" />
+        <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Width="16" Height="20">
+                            <Ellipse.Style>
+                                <Style TargetType="Ellipse">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding}" Value="{x:Static localization:Languages.Eng}">
+                                            <Setter Property="Fill">
+                                                <Setter.Value>
+                                                    <ImageBrush ImageSource="Pictures/eng.png" Stretch="UniformToFill" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding}" Value="{x:Static localization:Languages.Rus}">
+                                            <Setter Property="Fill">
+                                                <Setter.Value>
+                                                    <ImageBrush ImageSource="Pictures/rus.png" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding}" Value="{x:Static localization:Languages.Chi}">
+                                            <Setter Property="Fill">
+                                                <Setter.Value>
+                                                    <ImageBrush ImageSource="Pictures/chi.png" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding}" Value="{x:Static localization:Languages.Kor}">
+                                            <Setter Property="Fill">
+                                                <Setter.Value>
+                                                    <ImageBrush ImageSource="Pictures/kor.png" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Ellipse.Style>
+                        </Ellipse>
+                        <TextBlock Margin="10,0" Background="Transparent">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding}" Value="{x:Static localization:Languages.Eng}">
+                                            <Setter Property="Text" Value="English" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding}" Value="{x:Static localization:Languages.Rus}">
+                                            <Setter Property="Text" Value="Русский" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding}" Value="{x:Static localization:Languages.Chi}">
+                                            <Setter Property="Text" Value="中国人" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding}" Value="{x:Static localization:Languages.Kor}">
+                                            <Setter Property="Text" Value="한국인" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ComboBoxItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                <Border x:Name="Bd"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}" Cursor="Hand">
+                                    <StackPanel Orientation="Horizontal">
+                                        <ContentPresenter
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                        <Label Content="{Binding Title}" />
+                                        <Label Content="{Binding BranchName}" />
+                                    </StackPanel>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Foreground"
+                                                Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <ToggleButton Name="ToggleButton" Grid.Column="2"
+                                      ClickMode="Press" Focusable="False"
+                                      IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                      Template="{StaticResource ComboBoxToggleButtonTemplate}" />
+
+                        <ContentPresenter Name="ContentSite" Margin="5, 3, 23, 3" IsHitTestVisible="False"
+                                          HorizontalAlignment="Left" VerticalAlignment="Center"
+                                          Content="{TemplateBinding ComboBox.SelectionBoxItem}"
+                                          ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
+                        <TextBox Name="PART_EditableTextBox" Margin="3, 3, 23, 3"
+                                 IsReadOnly="{TemplateBinding IsReadOnly}"
+                                 Visibility="Hidden" Background="Transparent"
+                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                 Focusable="True">
+                            <TextBox.Template>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Border Name="PART_ContentHost" Focusable="False" />
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                        <!-- Popup showing items -->
+                        <Popup Name="Popup" Placement="Bottom"
+                               Focusable="False" AllowsTransparency="True"
+                               IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
+                               PopupAnimation="Slide">
+                            <Grid Name="DropDown" SnapsToDevicePixels="True"
+                                  MaxWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                                  MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                                  MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
+                                <Border Name="DropDownBorder" Background="{TemplateBinding Background}"
+                                        Margin="0, 1, 0, 0" BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="1" />
+                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ItemsControl.HasItems" Value="False">
+                            <Setter Property="FrameworkElement.MinHeight" TargetName="DropDownBorder" Value="95" />
+                        </Trigger>
+                        <Trigger Property="UIElement.IsEnabled" Value="False">
+                            <Setter Property="TextElement.Foreground"
+                                    Value="{StaticResource ComboBoxDisabledForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="ItemsControl.IsGrouping" Value="True">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                        </Trigger>
+                        <Trigger Property="ComboBox.IsEditable" Value="True">
+                            <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                            <Setter Property="UIElement.Visibility" TargetName="PART_EditableTextBox" Value="Visible" />
+                            <Setter Property="UIElement.Visibility" TargetName="ContentSite" Value="Hidden" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:TextBoxPlaceholder">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:TextBoxPlaceholder">
+                    <Grid>
+                        <Border
+                            x:Name="Border"
+                            Grid.ColumnSpan="3"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Cursor="IBeam">
+                            <Border.Background>
+                                <SolidColorBrush x:Name="BackgroundBrush" Color="Transparent" />
+                            </Border.Background>
+                        </Border>
+                        <TextBlock
+                            x:Name="TextBlock"
+                            Height="{TemplateBinding Height}"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            Foreground="{TemplateBinding Foreground}"
+                            Text="{TemplateBinding Placeholder}">
+                            <TextBlock.Visibility>
+                                <MultiBinding Converter="{StaticResource TextInputToVisibilityConverter}">
+                                    <Binding ElementName="TextBox" Path="Text.IsEmpty" />
+                                    <Binding ElementName="TextBox" Path="IsFocused" />
+                                </MultiBinding>
+                            </TextBlock.Visibility>
+                        </TextBlock>
+                        <TextBox
+                            x:Name="TextBox"
+                            Grid.ColumnSpan="3"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            HorizontalContentAlignment="Left"
+                            VerticalContentAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, UpdateSourceTrigger=PropertyChanged}"
+                            TextWrapping="NoWrap" Foreground="{TemplateBinding Foreground}" CaretBrush="#FFBBBBBB" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:ButtonImage">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ButtonImage">
+                    <Grid x:Name="grid">
+                        <Image Stretch="{TemplateBinding Stretch}" Source="{TemplateBinding Source}"></Image>
+                        <Border x:Name="border" Background="#cc242425" Height="23"
+                                VerticalAlignment="Bottom">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="23" MinHeight="23" />
+                                    <RowDefinition Height="3*" />
+                                    <RowDefinition Height="2*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Foreground="#C7C7C7" FontSize="15" Margin="7,0,0,0"
+                                           VerticalAlignment="Top"
+                                           FontFamily="Leelawadee UI Semilight" Text="{TemplateBinding Title}" FontWeight="DemiBold" />
+                                <TextBlock Grid.Row="1" Text="{TemplateBinding Description}"
+                                           TextWrapping="Wrap" Foreground="#C7C7C7" FontSize="11" Margin="7,0,0,0"
+                                           VerticalAlignment="Top"
+                                           FontFamily="Leelawadee UI Semilight" />
+                                <Button Grid.Row="2" x:Name="wr" Command="{TemplateBinding MyCommand}" Margin="20,3"
+                                        FontSize="11"
+                                        Template="{StaticResource RegButton}" Content="{TemplateBinding Content}" >
+                                   
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseMove">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard TargetProperty="Height" TargetName="border">
+                                        <DoubleAnimation To="80"
+                                                         Duration="0:0:0:0"
+                                                         DecelerationRatio="0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard TargetProperty="Height" TargetName="border">
+                                        <DoubleAnimation To="23"
+                                                         Duration="0:0:0.5" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="LoginButtonTemlate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid">
+            <Grid.Background>
+                <ImageBrush ImageSource="Pictures/Start.png" />
+            </Grid.Background>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.2" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ColorAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                Storyboard.TargetName="rectangle">
+                                <EasingColorKeyFrame KeyTime="0" Value="#008080" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed" />
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                           Storyboard.TargetName="grid">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0.75" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                Storyboard.TargetName="rectangle">
+                                <EasingColorKeyFrame KeyTime="0" Value="#008080" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Rectangle x:Name="rectangle" Fill="#009999" RadiusX="5" RadiusY="5" />
+            <TextBlock Margin="10,10,10,0" TextWrapping="Wrap" Text="{TemplateBinding Content}" Foreground="#FFF4F4F4"
+                       FontSize="14" TextAlignment="Center" FontFamily="Roboto" RenderTransformOrigin="0.5,0.5"
+                       FontWeight="Normal" />
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ButtonTemplateSettings" TargetType="Button">
+        <Grid>
+            <Rectangle RadiusX="7" RadiusY="7" Fill="#009999" Name="rectangle">
+            </Rectangle>
+            <Image Source="Pictures/accountSettings.png" Margin="5"></Image>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"></Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="rectangle" Property="Fill" Value="#aa009999"></Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="RoundedButton" TargetType="Button">
+        <Setter Property="Width" Value="18" />
+        <Setter Property="Height" Value="18" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Ellipse Name="GelBackground" Fill="#aa009999">                        </Ellipse>
+                        <ContentPresenter Name="GelButtonContent" VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"
+                                          Content="{TemplateBinding Content}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="LogoutButtonTemplate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid" Background="{x:Null}">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.2" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver" />
+                    <VisualState x:Name="Pressed" />
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                           Storyboard.TargetName="grid">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0.75" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Rectangle x:Name="rectangle" RadiusX="5" RadiusY="5">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF6385C3" Offset="0" />
+                        <GradientStop Color="#FF2E4D87" Offset="1" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Content}"
+                       Foreground="White" FontSize="14" TextAlignment="Center" FontFamily="Roboto"
+                       RenderTransformOrigin="0.5,0.5" FontWeight="Normal" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Fill" TargetName="rectangle">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF8AA8DE" Offset="0" />
+                            <GradientStop Color="#FF4165A8" Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="grid" Value="0.8" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="DonateButtonTemplate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid" Background="{x:Null}">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.2" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver" />
+                    <VisualState x:Name="Pressed" />
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                           Storyboard.TargetName="grid">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0.75" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Rectangle x:Name="rectangle" RadiusX="5" RadiusY="5">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Pictures/Donate.png" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Content}"
+                       Foreground="White" FontSize="14" TextAlignment="Center" FontFamily="Roboto"
+                       RenderTransformOrigin="0.5,0.5" FontWeight="Normal" Margin="19.625,8.1,0,8.1" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="PictureButtonControlTemplate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid" Background="{TemplateBinding Background}" Opacity="0.9">
+            <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Height="20.75" Margin="0,46,0,0"
+                       TextWrapping="Wrap" Text="{TemplateBinding Content}" VerticalAlignment="Top" Width="122"
+                       Foreground="White" FontSize="14" FontFamily="Roboto" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" TargetName="grid" Value="1" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="BannerButtonControlTemplate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid" Background="{TemplateBinding Background}" Opacity="0.9">
+            <TextBlock TextAlignment="Left" HorizontalAlignment="Left" Height="46.25" Margin="65.667,39.667,0,0"
+                       TextWrapping="Wrap" Text="{TemplateBinding Content}" VerticalAlignment="Top" Width="163.5"
+                       Foreground="White" FontSize="18" FontFamily="Roboto" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" TargetName="grid" Value="1" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="SimpleTextButtonControlTemplate" TargetType="{x:Type Button}">
+        <Grid>
+            <TextBlock x:Name="textBlock" Margin="0,0,35.834,0" TextAlignment="Right" TextWrapping="Wrap"
+                       Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" FontFamily="Roboto" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="TextDecorations" TargetName="textBlock" Value="Underline" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="PictureInsideButtonTemplate" TargetType="{x:Type Button}">
+        <Grid Background="{x:Null}">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.2" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ColorAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                Storyboard.TargetName="rectangle">
+                                <EasingColorKeyFrame KeyTime="0" Value="#FF091E38" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed" />
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <ColorAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)"
+                                Storyboard.TargetName="rectangle">
+                                <EasingColorKeyFrame KeyTime="0" Value="#FF185B9A" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                Storyboard.TargetName="rectangle1">
+                                <EasingColorKeyFrame KeyTime="0" Value="#FF185B9A" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Rectangle x:Name="rectangle" Fill="#FF061425" Stroke="#FF4FAAFF" StrokeThickness="0.5" />
+            <Rectangle x:Name="rectangle1" Margin="6" OpacityMask="{TemplateBinding Background}" StrokeThickness="0"
+                       Fill="#FF4FAAFF" />
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="NewsRadioButtonControlTemplate" TargetType="{x:Type RadioButton}">
+        <Grid>
+            <TextBlock x:Name="textBlock" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"
+                       Text="{TemplateBinding Content}" Foreground="#FF999999" FontFamily="Arial" FontSize="16" />
+            <Rectangle x:Name="rectangle" Height="1.667" Margin="15.667,39,14,0" Stroke="{x:Null}"
+                       VerticalAlignment="Top" Width="Auto" Fill="#FFFFE27D" RadiusX="2.5" RadiusY="2"
+                       Visibility="Hidden">
+                <Rectangle.Effect>
+                    <DropShadowEffect ShadowDepth="0" Color="#FFFFE27D" BlurRadius="10"></DropShadowEffect>
+                </Rectangle.Effect>
+            </Rectangle>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Visibility" TargetName="rectangle" Value="Visible" />
+                <Setter Property="Background" TargetName="textBlock" Value="{x:Null}" />
+                <Setter Property="Foreground" TargetName="textBlock" Value="#FFFFE27D" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" TargetName="textBlock" Value="#FFB6A15B" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="AccountItemMenu" TargetType="{x:Type MenuItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MenuItem">
+                    <Grid>
+                        <Grid Panel.ZIndex="3"
+                              Margin="{TemplateBinding Padding}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="CheckMarkColumn"
+                                                  x:Name="CheckMarkColumn" />
+                                <ColumnDefinition Width="*" MinWidth="130" x:Name="HeaderColumn" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="InputGestureColumn"
+                                                  x:Name="InputGestureColumn" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="ArrowColumn" x:Name="ArrowColumn" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <TextBlock Grid.Column="1" MaxWidth="100" TextTrimming="WordEllipsis">
+                                <Run Text="{TemplateBinding Header}"></Run>
+                                <ContentPresenter x:Name="ItemHeader"
+                                                  ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                  TextElement.Foreground="{TemplateBinding Foreground}"
+                                                  RecognizesAccessKey="True"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Stretch"
+                                                  Margin="0, 0" />
+                            </TextBlock>
+
+
+                        </Grid>
+
+                        <Popup x:Name="SubMenuPopup"
+                               Focusable="False"
+                               Placement="Bottom"
+                               AllowsTransparency="True"
+                               IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                               PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuFade}}">
+
+                            <Border x:Name="SubMenuPopupBorder"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="1" 
+                                    Background="{TemplateBinding Background}"
+                                    Margin="0, 0, 8, 8">
+
+                                <StackPanel IsItemsHost="True"
+                                            KeyboardNavigation.DirectionalNavigation="Cycle"
+                                            Grid.IsSharedSizeScope="True" />
+
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

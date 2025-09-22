@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientFile", "ClientFile\ClientFile.csproj", "{0634C354-08F3-40ED-B474-830DDB13C817}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater.Net9", "Updater.Net9\Updater.Net9.csproj", "{452139C6-4E7D-496F-A089-2217AC592F7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{0634C354-08F3-40ED-B474-830DDB13C817}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0634C354-08F3-40ED-B474-830DDB13C817}.Release|x86.ActiveCfg = Release|Any CPU
 		{0634C354-08F3-40ED-B474-830DDB13C817}.Release|x86.Build.0 = Release|Any CPU
+		{452139C6-4E7D-496F-A089-2217AC592F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{452139C6-4E7D-496F-A089-2217AC592F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{452139C6-4E7D-496F-A089-2217AC592F7E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{452139C6-4E7D-496F-A089-2217AC592F7E}.Debug|x86.Build.0 = Debug|Any CPU
+		{452139C6-4E7D-496F-A089-2217AC592F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{452139C6-4E7D-496F-A089-2217AC592F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{452139C6-4E7D-496F-A089-2217AC592F7E}.Release|x86.ActiveCfg = Release|Any CPU
+		{452139C6-4E7D-496F-A089-2217AC592F7E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
