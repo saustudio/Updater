@@ -12,9 +12,13 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Threading;
+
 using Logging;
+
 using MessageEx;
+
 using RR_DesignUI;
+
 using Updater.Annotations;
 using Updater.Controls;
 using Updater.Localization;
@@ -95,11 +99,12 @@ namespace Updater
         // Token: 0x06000133 RID: 307 RVA: 0x0000798C File Offset: 0x00005B8C
         public void ThreadHwd()
         {
-            if (this.device == null)
-            {
-                DevicesHelper devicesHelper = new DevicesHelper();
-                this.device = devicesHelper;
-            }
+            throw new NotImplementedException();
+            //if (this.device == null)
+            //{
+            //    DevicesHelper devicesHelper = new DevicesHelper();
+            //    this.device = devicesHelper;
+            //}
         }
 
         // Token: 0x06000134 RID: 308 RVA: 0x000079B0 File Offset: 0x00005BB0
@@ -270,56 +275,58 @@ namespace Updater
             string text = Config.connect.ReceiveResponse();
             if (text.Length > 0)
             {
-                string[] array = text.Split(new char[] { '&' });
-                LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] CHECK RECEIVE LENGTH SERVER", Array.Empty<object>());
-                if (array.Length >= 3)
-                {
-                    LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] CHECK RECEIVE DATA SERVER", Array.Empty<object>());
-                    if (array[0].IndexOf(Config.Base64DecodeEx("TVxWWElCWVxJXEJJ", 29)) != -1)
-                    {
-                        LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] CHECK RECEIVE MESSAGE SERVER", Array.Empty<object>());
-                        if (array[1] == Config.Base64DecodeEx("h4aGhw==", 182))
-                        {
-                            LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] CHECK MESSAGE[1] SERVER", Array.Empty<object>());
-                            Thread.Sleep(2300);
-                            string text2 = "";
-                            string text3 = "";
-                            if (this.ChAt(ref text2))
-                            {
-                                text3 = "&" + Config.Base64DecodeEx("ho+NhYuc", 206) + "&" + text2;
-                            }
-                            string text4 = this.Login;
-                            if (Config.connect.SendString(string.Concat(new string[]
-                            {
-                                Config.Base64DecodeEx("loeNg5KZgoeSh5mS4Pf29vTg", 198),
-                                array[2],
-                                "&",
-                                text4,
-                                "&",
-                                ClientData.Sha1Hash(this.Pass),
-                                "&",
-                                this.device.HardwareId,
-                                text3
-                            })))
-                            {
-                                return this.SessionResponse();
-                            }
-                        }
-                        if (array[1] == Config.Base64DecodeEx("4OHh4w==", 209))
-                        {
-                            LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] CHECK MESSAGE[2] SERVER", Array.Empty<object>());
-                            this._balance = array[4];
-                            this._parametr = string.Format("\"" + Config.Base64DecodeEx("RCkyXCUpMlwmKVlAUWNZUEUpMkQkKW8kaTJEJSlFJS1HWXMpKTJEJilaUE1sWXMpKTJEJykyRCApbyVpMkQhKTJEVyUpQHMpKTJEVyYpQHMpKQ==", 20) + "\"", Config.Base64Encode(array[3]), Config.Base64Encode(array[2].Replace("|", "_")));
-                            this._parametr2 = string.Format(Config.Base64DecodeEx("5771uLn19fT39vzz9PL0ub70uOfl9PXz9vLz9vD09OX09fP28vD88fH05fT18/by8/by9vPl9PXz9vLz9vD09OX09fP28vP28v335fT18/by8P3z9vI=", 197), array[3], array[2].Replace("|", "_"));
-                            this.FileDeleteEx(this._env);
-                            return true;
-                        }
-                        if (array[1] == Config.Base64DecodeEx("MTExMQ==", 1))
-                        {
-                            MessageBoxEx.ShowWarning(array[2], Config.Base64DecodeEx("zvn55Pk=", 139), 10000U);
-                        }
-                    }
-                }
+                throw new NotImplementedException();
+
+                //    string[] array = text.Split(new char[] { '&' });
+                //    LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] CHECK RECEIVE LENGTH SERVER", Array.Empty<object>());
+                //    if (array.Length >= 3)
+                //    {
+                //        LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] CHECK RECEIVE DATA SERVER", Array.Empty<object>());
+                //        if (array[0].IndexOf(Config.Base64DecodeEx("TVxWWElCWVxJXEJJ", 29)) != -1)
+                //        {
+                //            LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] CHECK RECEIVE MESSAGE SERVER", Array.Empty<object>());
+                //            if (array[1] == Config.Base64DecodeEx("h4aGhw==", 182))
+                //            {
+                //                LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] CHECK MESSAGE[1] SERVER", Array.Empty<object>());
+                //                Thread.Sleep(2300);
+                //                string text2 = "";
+                //                string text3 = "";
+                //                if (this.ChAt(ref text2))
+                //                {
+                //                    text3 = "&" + Config.Base64DecodeEx("ho+NhYuc", 206) + "&" + text2;
+                //                }
+                //                string text4 = this.Login;
+                //                if (Config.connect.SendString(string.Concat(new string[]
+                //                {
+                //                    Config.Base64DecodeEx("loeNg5KZgoeSh5mS4Pf29vTg", 198),
+                //                    array[2],
+                //                    "&",
+                //                    text4,
+                //                    "&",
+                //                    ClientData.Sha1Hash(this.Pass),
+                //                    "&",
+                //                    this.device.HardwareId,
+                //                    text3
+                //                })))
+                //                {
+                //                    return this.SessionResponse();
+                //                }
+                //            }
+                //            if (array[1] == Config.Base64DecodeEx("4OHh4w==", 209))
+                //            {
+                //                LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] CHECK MESSAGE[2] SERVER", Array.Empty<object>());
+                //                this._balance = array[4];
+                //                this._parametr = string.Format("\"" + Config.Base64DecodeEx("RCkyXCUpMlwmKVlAUWNZUEUpMkQkKW8kaTJEJSlFJS1HWXMpKTJEJilaUE1sWXMpKTJEJykyRCApbyVpMkQhKTJEVyUpQHMpKTJEVyYpQHMpKQ==", 20) + "\"", Config.Base64Encode(array[3]), Config.Base64Encode(array[2].Replace("|", "_")));
+                //                this._parametr2 = string.Format(Config.Base64DecodeEx("5771uLn19fT39vzz9PL0ub70uOfl9PXz9vLz9vD09OX09fP28vD88fH05fT18/by8/by9vPl9PXz9vLz9vD09OX09fP28vP28v335fT18/by8P3z9vI=", 197), array[3], array[2].Replace("|", "_"));
+                //                this.FileDeleteEx(this._env);
+                //                return true;
+                //            }
+                //            if (array[1] == Config.Base64DecodeEx("MTExMQ==", 1))
+                //            {
+                //                MessageBoxEx.ShowWarning(array[2], Config.Base64DecodeEx("zvn55Pk=", 139), 10000U);
+                //            }
+                //        }
+                //    }
             }
             LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] CHECK FAIL RECEIVE SERVER", Array.Empty<object>());
             return false;
@@ -330,11 +337,15 @@ namespace Updater
         {
             LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] START", Array.Empty<object>());
             this.SignIn.IsEnabled = false;
-            if (this.device == null)
-            {
-                this.device = new DevicesHelper();
-                LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] LOAD DEVICE", Array.Empty<object>());
-            }
+
+            throw new NotImplementedException();
+
+            //if (this.device == null)
+            //{
+            //    //this.device = new DevicesHelper();
+            //    LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] LOAD DEVICE", Array.Empty<object>());
+            //}
+
             if (this.Login.Length >= 5 && this.Login.Length <= 80 && this.Pass.Length > 0 && this.Pass.Length <= 100)
             {
                 if (this.Login.IndexOf("@") != -1 && this.Login.IndexOf(".") != -1)
@@ -346,32 +357,33 @@ namespace Updater
                         if (Config.connect.ConnectToServer())
                         {
                             LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] SEND DATA SERVER", Array.Empty<object>());
-                            if (Config.connect.SendString(Config.Base64DecodeEx("W0pATl9UT0pfSlRfLTo7OzotZX5nZw==", 11)))
-                            {
-                                LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] START DATA SESSION SERVER", Array.Empty<object>());
-                                if (this.SessionResponse())
-                                {
-                                    LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] SUSSCED AUTH", Array.Empty<object>());
-                                    string text = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + Config.Base64DecodeEx("v7Sz87m8qQ==", 221);
-                                    if (this.CheckedLogPass.IsChecked.GetValueOrDefault())
-                                    {
-                                        File.WriteAllText(text, this.Login);
-                                    }
-                                    else
-                                    {
-                                        this.FileDeleteEx(text);
-                                    }
-                                    LoginWindow._logInInfo = new LoginInfo
-                                    {
-                                        Login = this.Login,
-                                        Parametr = this._parametr,
-                                        Parametr2 = this._parametr2,
-                                        Balance = this._balance
-                                    };
-                                    Settings.Default.Lang = (int)LangInfo.Lang;
-                                    Settings.Default.Save();
-                                }
-                            }
+                            throw new NotImplementedException();
+                            //if (Config.connect.SendString(Config.Base64DecodeEx("W0pATl9UT0pfSlRfLTo7OzotZX5nZw==", 11)))
+                            //{
+                            //    LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] START DATA SESSION SERVER", Array.Empty<object>());
+                            //    if (this.SessionResponse())
+                            //    {
+                            //        LoggUpdater.log.LogWrite(LoggUpdater.LogLevel.INFO_LOG, "[AUTHORIZATION] SUSSCED AUTH", Array.Empty<object>());
+                            //        string text = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + Config.Base64DecodeEx("v7Sz87m8qQ==", 221);
+                            //        if (this.CheckedLogPass.IsChecked.GetValueOrDefault())
+                            //        {
+                            //            File.WriteAllText(text, this.Login);
+                            //        }
+                            //        else
+                            //        {
+                            //            this.FileDeleteEx(text);
+                            //        }
+                            //        LoginWindow._logInInfo = new LoginInfo
+                            //        {
+                            //            Login = this.Login,
+                            //            Parametr = this._parametr,
+                            //            Parametr2 = this._parametr2,
+                            //            Balance = this._balance
+                            //        };
+                            //        Settings.Default.Lang = (int)LangInfo.Lang;
+                            //        Settings.Default.Save();
+                            //    }
+                            //}
                         }
                         goto IL_252;
                     }
@@ -381,13 +393,16 @@ namespace Updater
                         goto IL_252;
                     }
                 }
-                MessageBoxEx.ShowError(Config.Base64DecodeEx("JwAYDwIHCk4DDwcC", 110), "Error", 10000U);
+
+                throw new NotImplementedException();
+                //MessageBoxEx.ShowError(Config.Base64DecodeEx("JwAYDwIHCk4DDwcC", 110), "Error", 10000U);
             }
             else
             {
-                MessageBoxEx.ShowError(Config.Base64DecodeEx("NxwVBhUXABEGVDgRGhMAHFQxBgYbBg==", 116), "Error", 10000U);
+                throw new NotImplementedException();
+                //MessageBoxEx.ShowError(Config.Base64DecodeEx("NxwVBhUXABEGVDgRGhMAHFQxBgYbBg==", 116), "Error", 10000U);
             }
-        IL_252:
+IL_252:
             this.SignIn.IsEnabled = true;
             return true;
         }
@@ -442,49 +457,49 @@ namespace Updater
         // Token: 0x06000145 RID: 325 RVA: 0x00002DBA File Offset: 0x00000FBA
         private void Site_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://r2dispel.ru/");
+            //Process.Start("https://r2dispel.ru/");
         }
 
         // Token: 0x06000146 RID: 326 RVA: 0x00002DC7 File Offset: 0x00000FC7
         private void Forum_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://dispel-forum.ru/");
+            //Process.Start("https://dispel-forum.ru/");
         }
 
         // Token: 0x06000147 RID: 327 RVA: 0x00002DD4 File Offset: 0x00000FD4
         private void Support_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://vk.com/im?sel=-168610367");
+            //Process.Start("https://vk.com/im?sel=-168610367");
         }
 
         // Token: 0x06000148 RID: 328 RVA: 0x00002DBA File Offset: 0x00000FBA
         private void forgot_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://r2dispel.ru/");
+            //Process.Start("https://r2dispel.ru/");
         }
 
         // Token: 0x06000149 RID: 329 RVA: 0x00002DE1 File Offset: 0x00000FE1
         private void Discord_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://discord.gg/1");
+            //Process.Start("https://discord.gg/1");
         }
 
         // Token: 0x0600014A RID: 330 RVA: 0x00002DE1 File Offset: 0x00000FE1
         private void Instagram_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://discord.gg/1");
+            //Process.Start("https://discord.gg/1");
         }
 
         // Token: 0x0600014B RID: 331 RVA: 0x00002DE1 File Offset: 0x00000FE1
         private void Telegram_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://discord.gg/1");
+            //Process.Start("https://discord.gg/1");
         }
 
         // Token: 0x0600014C RID: 332 RVA: 0x00002DE1 File Offset: 0x00000FE1
         private void VK_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://discord.gg/1");
+            //Process.Start("https://discord.gg/1");
         }
 
         // Token: 0x0600014D RID: 333 RVA: 0x00008290 File Offset: 0x00006490
@@ -501,7 +516,7 @@ namespace Updater
         }
 
         // Token: 0x0400009A RID: 154
-        public DevicesHelper device;
+        //public DevicesHelper device;
 
         // Token: 0x0400009B RID: 155
         public static MutexHelper _mutexLauncher = new MutexHelper("z123F17gb1265");
@@ -519,14 +534,16 @@ namespace Updater
         private string _balance;
 
         // Token: 0x040000A2 RID: 162
-        private string _env = string.Concat(new string[]
-        {
-            Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-            "\\",
-            Config.Base64DecodeEx("+fLq", 156),
-            "\\",
-            Config.Base64DecodeEx("IRYmGUJDSjsZEkJdBhoS", 115)
-        });
+        private string _env = ""; 
+        #warning not implemented
+            //string.Concat(new string[]
+        //{
+        //    //Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+        //    //"\\",
+        //    //Config.Base64DecodeEx("+fLq", 156),
+        //    //"\\",
+        //    //Config.Base64DecodeEx("IRYmGUJDSjsZEkJdBhoS", 115)
+        //});
 
         // Token: 0x040000A3 RID: 163
         public static LoginInfo _logInInfo = null;

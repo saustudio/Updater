@@ -162,11 +162,6 @@
     <Compile Include="HttpHelper.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Hwid\CpuId.cs" />
-    <Compile Include="Hwid\DevicesHelper.cs" />
-    <Compile Include="Hwid\DiskId.cs" />
-    <Compile Include="Hwid\UHWIDEngine.cs" />
-    <Compile Include="Hwid\WindowsId.cs" />
     <Compile Include="INIParser.cs" />
     <Compile Include="JSONObject.cs" />
     <Compile Include="Localization\LangInfo.cs" />

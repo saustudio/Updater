@@ -134,206 +134,210 @@ namespace Updater
             /*var settingsWindow = new SettingsWindow();
             settingsWindow.ShowDialog();*/
 
-            try
-            {
-                ProcessStartInfo _processStartInfo = new ProcessStartInfo();
-                _processStartInfo.WorkingDirectory = SavePath;
-                _processStartInfo.FileName = SavePath + "\\R2Option.exe";
-                Process myProcess = Process.Start(_processStartInfo);
-            }
-            catch (Exception ex) { }
+            throw new NotImplementedException();
+            //try
+            //{
+            //    ProcessStartInfo _processStartInfo = new ProcessStartInfo();
+            //    _processStartInfo.WorkingDirectory = SavePath;
+            //    _processStartInfo.FileName = SavePath + "\\R2Option.exe";
+            //    Process myProcess = Process.Start(_processStartInfo);
+            //}
+            //catch (Exception ex) { }
         }
 
 
         private int StartGame()
         {
+            throw new NotImplementedException();
 
-            if (File.Exists(SavePath + "\\R2Client.exe"))
-            {
-                this.WindowState = WindowState.Minimized;
+            //if (File.Exists(SavePath + "\\R2Client.exe"))
+            //{
+            //    this.WindowState = WindowState.Minimized;
 
-                string prm = this.Parametr;
+            //    string prm = this.Parametr;
 
-                try
-                {
-                    if (File.Exists(SavePath + "\\R2.cfg"))
-                    {
-                        bool _del = true;
-                        string[] l = File.ReadAllLines(SavePath + "\\R2.cfg");
-                        foreach (var i in l)
-                        {
-                            if (i.IndexOf("channelserverip = 94.130.219.211") != -1 || i.IndexOf("channelserverip= 94.130.219.211") != -1)
-                            {
-                                _del = false;
-                                break;
-                            }
-                        }
+            //    try
+            //    {
+            //        if (File.Exists(SavePath + "\\R2.cfg"))
+            //        {
+            //            bool _del = true;
+            //            string[] l = File.ReadAllLines(SavePath + "\\R2.cfg");
+            //            foreach (var i in l)
+            //            {
+            //                if (i.IndexOf("channelserverip = 94.130.219.211") != -1 || i.IndexOf("channelserverip= 94.130.219.211") != -1)
+            //                {
+            //                    _del = false;
+            //                    break;
+            //                }
+            //            }
 
-                        if (_del)
-                        {
-                            File.Delete(SavePath + "\\R2.cfg");
-                        }
-                    }
-                }
-                catch { }
+            //            if (_del)
+            //            {
+            //                File.Delete(SavePath + "\\R2.cfg");
+            //            }
+            //        }
+            //    }
+            //    catch { }
 
-                try
-                {
-                    if (File.Exists(SavePath + "\\R2.cfg"))
-                    {
-                        string[] l = File.ReadAllLines(SavePath + "\\R2.cfg");
-                        for (int i = 0; i < l.Length; i++)
-                        {
-                            if (l[i].IndexOf("channelserverport") != -1)
-                            {
-                                if (Config.serverType == 0)
-                                {
-                                    l[i] = "channelserverport = 11025";
-                                }
-                                else if (Config.serverType == 1)
-                                {
-                                    l[i] = "channelserverport = 9000";
-                                }
-                            }
-                        }
-                        File.WriteAllLines(SavePath + "\\R2.cfg", l);
-                    }
+            //    try
+            //    {
+            //        if (File.Exists(SavePath + "\\R2.cfg"))
+            //        {
+            //            string[] l = File.ReadAllLines(SavePath + "\\R2.cfg");
+            //            for (int i = 0; i < l.Length; i++)
+            //            {
+            //                if (l[i].IndexOf("channelserverport") != -1)
+            //                {
+            //                    if (Config.serverType == 0)
+            //                    {
+            //                        l[i] = "channelserverport = 11025";
+            //                    }
+            //                    else if (Config.serverType == 1)
+            //                    {
+            //                        l[i] = "channelserverport = 9000";
+            //                    }
+            //                }
+            //            }
+            //            File.WriteAllLines(SavePath + "\\R2.cfg", l);
+            //        }
 
-                    if (File.Exists(SavePath + "\\R2SafeMode.cfg"))
-                    {
-                        string[] l = File.ReadAllLines(SavePath + "\\R2SafeMode.cfg");
-                        for (int i = 0; i < l.Length; i++)
-                        {
-                            if (l[i].IndexOf("channelserverport") != -1)
-                            {
-                                if (Config.serverType == 0)
-                                {
-                                    l[i] = "channelserverport = 11025";
-                                }
-                                else if (Config.serverType == 1)
-                                {
-                                    l[i] = "channelserverport = 9000";
-                                }
-                            }
-                        }
-                        File.WriteAllLines(SavePath + "\\R2SafeMode.cfg", l);
-                    }
-                }
-                catch { }
+            //        if (File.Exists(SavePath + "\\R2SafeMode.cfg"))
+            //        {
+            //            string[] l = File.ReadAllLines(SavePath + "\\R2SafeMode.cfg");
+            //            for (int i = 0; i < l.Length; i++)
+            //            {
+            //                if (l[i].IndexOf("channelserverport") != -1)
+            //                {
+            //                    if (Config.serverType == 0)
+            //                    {
+            //                        l[i] = "channelserverport = 11025";
+            //                    }
+            //                    else if (Config.serverType == 1)
+            //                    {
+            //                        l[i] = "channelserverport = 9000";
+            //                    }
+            //                }
+            //            }
+            //            File.WriteAllLines(SavePath + "\\R2SafeMode.cfg", l);
+            //        }
+            //    }
+            //    catch { }
 
-                try
-                {
-                    if (File.Exists(SavePath + "\\R2.ver"))
-                    {
-                        using (FileStream myStream = File.OpenRead(SavePath + "\\R2.ver"))
-                        {
-                            using (BinaryReader read = new BinaryReader(myStream))
-                            {
-                                int v1 = read.ReadInt32();
-                                int v2 = read.ReadInt32();
-                                int v3 = read.ReadInt32();
-                                if (v1 == 1 && v2 == 399 && v3 == 38)
-                                {
-                                    prm = this.Parametr2;
+            //    try
+            //    {
+            //        if (File.Exists(SavePath + "\\R2.ver"))
+            //        {
+            //            using (FileStream myStream = File.OpenRead(SavePath + "\\R2.ver"))
+            //            {
+            //                using (BinaryReader read = new BinaryReader(myStream))
+            //                {
+            //                    int v1 = read.ReadInt32();
+            //                    int v2 = read.ReadInt32();
+            //                    int v3 = read.ReadInt32();
+            //                    if (v1 == 1 && v2 == 399 && v3 == 38)
+            //                    {
+            //                        prm = this.Parametr2;
 
-                                    try
-                                    {
-                                        if (File.Exists(SavePath + "\\R2.cfg"))
-                                        {
-                                            string[] l = File.ReadAllLines(SavePath + "\\R2.cfg");
-                                            foreach (var i in l)
-                                            {
-                                                if (i.IndexOf("nation = 1") != -1 || i.IndexOf("nation=1") != -1 ||
-                                                    i.IndexOf("nation = 2") != -1 || i.IndexOf("nation=2") != -1 ||
-                                                    i.IndexOf("nation = 3") != -1 || i.IndexOf("nation=3") != -1 ||
-                                                    i.IndexOf("nation = 4") != -1 || i.IndexOf("nation=4") != -1 ||
-                                                     i.IndexOf("nation = 5") != -1 || i.IndexOf("nation=5") != -1)
-                                                {
-                                                    File.Delete(SavePath + "\\R2.cfg");
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    catch { }
-                                }
-                            }
-                        }
-                    }
-                }
-                catch { }
+            //                        try
+            //                        {
+            //                            if (File.Exists(SavePath + "\\R2.cfg"))
+            //                            {
+            //                                string[] l = File.ReadAllLines(SavePath + "\\R2.cfg");
+            //                                foreach (var i in l)
+            //                                {
+            //                                    if (i.IndexOf("nation = 1") != -1 || i.IndexOf("nation=1") != -1 ||
+            //                                        i.IndexOf("nation = 2") != -1 || i.IndexOf("nation=2") != -1 ||
+            //                                        i.IndexOf("nation = 3") != -1 || i.IndexOf("nation=3") != -1 ||
+            //                                        i.IndexOf("nation = 4") != -1 || i.IndexOf("nation=4") != -1 ||
+            //                                         i.IndexOf("nation = 5") != -1 || i.IndexOf("nation=5") != -1)
+            //                                    {
+            //                                        File.Delete(SavePath + "\\R2.cfg");
+            //                                        break;
+            //                                    }
+            //                                }
+            //                            }
+            //                        }
+            //                        catch { }
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+            //    catch { }
 
 
-                if (Config.type > 0)
-                {
-                    try
-                    {
+            //    if (Config.type > 0)
+            //    {
+            //        try
+            //        {
 
-                        INI.INIParser ini = new INI.INIParser(SavePath + "\\setting.cfg");
+            //            INI.INIParser ini = new INI.INIParser(SavePath + "\\setting.cfg");
 
-                        if (Updater.Localization.Languages.Rus == LangInfo.Lang || Updater.Localization.Languages.Eng == LangInfo.Lang)
-                        {
-                            ini.Write("setting", "lng", "0");
-                        }
+            //            if (Updater.Localization.Languages.Rus == LangInfo.Lang || Updater.Localization.Languages.Eng == LangInfo.Lang)
+            //            {
+            //                ini.Write("setting", "lng", "0");
+            //            }
 
-                        if (Updater.Localization.Languages.Chi == LangInfo.Lang)
-                        {
-                            ini.Write("setting", "lng", "1");
-                        }
+            //            if (Updater.Localization.Languages.Chi == LangInfo.Lang)
+            //            {
+            //                ini.Write("setting", "lng", "1");
+            //            }
 
-                        if (Updater.Localization.Languages.Kor == LangInfo.Lang)
-                        {
-                            ini.Write("setting", "lng", "2");
-                        }
+            //            if (Updater.Localization.Languages.Kor == LangInfo.Lang)
+            //            {
+            //                ini.Write("setting", "lng", "2");
+            //            }
     
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Launcher", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show(ex.Message, "Launcher", MessageBoxButton.OK, MessageBoxImage.Error);
+            //        }
+            //    }
 
-                try
-                {
-                    ProcessStartInfo _processStartInfo = new ProcessStartInfo();
-                    _processStartInfo.WorkingDirectory = SavePath;
-                    _processStartInfo.FileName = SavePath + "\\R2Client.exe";
-                    _processStartInfo.Arguments = prm;
-                    // _processStartInfo.CreateNoWindow = true;
-                    Process myProcess = Process.Start(_processStartInfo);
+            //    try
+            //    {
+            //        throw new NotImplementedException();
 
-                    if (myProcess != null)
-                    {
-                        //process.WaitForExit();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error open R2Client.exe", "Launcher", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+            //        //ProcessStartInfo _processStartInfo = new ProcessStartInfo();
+            //        //_processStartInfo.WorkingDirectory = SavePath;
+            //        //_processStartInfo.FileName = SavePath + "\\R2Client.exe";
+            //        //_processStartInfo.Arguments = prm;
+            //        //// _processStartInfo.CreateNoWindow = true;
+            //        //Process myProcess = Process.Start(_processStartInfo);
 
-                    /*Process process = System.Diagnostics.Process.Start(SavePath + "\\R2Client.exe", prm);
+            //        //if (myProcess != null)
+            //        //{
+            //        //    //process.WaitForExit();
+            //        //}
+            //        //else
+            //        //{
+            //        //    MessageBox.Show("Error open R2Client.exe", "Launcher", MessageBoxButton.OK, MessageBoxImage.Error);
+            //        //}
 
-                    if (process != null)
-                    {
-                        //process.WaitForExit();
-                    }
-                    */
-                    Process.GetCurrentProcess().Kill();
+            //        ///*Process process = System.Diagnostics.Process.Start(SavePath + "\\R2Client.exe", prm);
 
-                    return 0;
-                }
-                catch(Exception ex) {
-                    MessageBox.Show(ex.Message, "Launcher", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+            //        //if (process != null)
+            //        //{
+            //        //    //process.WaitForExit();
+            //        //}
+            //        //*/
+            //        //Process.GetCurrentProcess().Kill();
+
+            //        return 0;
+            //    }
+            //    catch(Exception ex) {
+            //        MessageBox.Show(ex.Message, "Launcher", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    }
 
 
              
-            }
-            else
-            {
-                MessageBoxEx.ShowError("Missing file R2Client.exe\n" + SavePath + "\\R2Client.exe", "Error", 10000);
+            //}
+            //else
+            //{
+            //    MessageBoxEx.ShowError("Missing file R2Client.exe\n" + SavePath + "\\R2Client.exe", "Error", 10000);
               
-            }
+            //}
 
 
             //Application.Current.Shutdown();
