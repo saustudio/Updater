@@ -1,25 +1,25 @@
-﻿using JSONProject;
-using MessageEx;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms.VisualStyles;
 using System.Windows.Input;
+
+using JSONProject;
+
+using MessageEx;
+
 using Updater.Annotations;
 using Updater.Enums;
 using Updater.Localization;
 using Updater.Properties;
 using Updater.UtillsClasses;
+
 using Languages = Updater.Localization.Languages;
 
 namespace Updater
@@ -479,6 +479,7 @@ namespace Updater
         private void ProgressDownloadFileChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             
+
             this.downloadSize += (double)e.BytesReceived - this.lastDownload;
             this.lastDownload = (double)e.BytesReceived;
             this.downloadSpeed = (double)e.BytesReceived / this.stopwatch.Elapsed.TotalSeconds;
